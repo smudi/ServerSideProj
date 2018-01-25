@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <center><a>@Html.ActionLink("Jönköping library", "Index", "Home")</a></center>
+    <nav>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="navList"><a>@Html.ActionLink("Books", "Index", "Books")</a></li>
+                <li class="navList"><a>@Html.ActionLink("Authors", "Index", "Authors")</a></li>
+                <li class="navList"><a>@Html.ActionLink("Administrators", "Index", "Administrators")</a></li>
+            </ul>
+        </div>
+    </nav>
+    @RenderBody()
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Service.Models.Author>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Authors</h2>
+
+<div class="input-group">
+    @using (Html.BeginForm())
+    {
+        @:Search
+        @Html.TextBox("searchBox")
+        <a href="#" class="btn btn-default">Search</a>
+            @*<input type="submit" value="search"/>*@
+
+    }
+</div>
+
+<ul>
+    @foreach (var author in Model)
+    {
+        <li><a>@author.Name</a></li>
+    }
+</ul>
+@Html.ActionLink("Create Author", "Create", "Authors")
+

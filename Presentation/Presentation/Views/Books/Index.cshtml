@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Service.Models.Book>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>BOOKS</h2>
+
+@if (!Model.Any())
+{
+    <p>There are no books</p>
+}
+
+<div class="input-group">
+    @using (Html.BeginForm())
+    {
+        @:Search
+        @Html.TextBox("searchBox")
+        <a href="#" class="btn btn-default">Search</a>
+        @*<input type="submit" value="search"/>*@
+
+    }
+</div>
+
+<div class="list-group">
+    <ul>
+        @foreach (var book in Model)
+        {
+            <li><a>@book.Name)</a></li>
+        }
+    </ul>
+</div>
+@Html.ActionLink("Create Book", "Create", "Books")
