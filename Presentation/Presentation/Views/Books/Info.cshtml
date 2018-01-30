@@ -1,0 +1,13 @@
+﻿@model Service.Models.Book
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Info</h2>
+
+<h1>@Model.Name</h1>
+<p>@Model.Information</p>
+<div>
+</div>
+@Html.ActionLink("Edit Book", "Edit", "Books")

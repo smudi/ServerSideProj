@@ -16,5 +16,13 @@ namespace Presentation.Controllers
             var books = BookMockup.GetBooks();
             return View(books);
         }
+        public ActionResult Info(int id)
+        {
+            var book = BookMockup.GetBooks().SingleOrDefault(b => b.Id == id);
+
+            if (book == null) return HttpNotFound();
+
+            return View(book);
+        }
     }
 }

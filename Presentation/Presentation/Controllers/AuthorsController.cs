@@ -15,5 +15,14 @@ namespace Presentation.Controllers
             var author = AuthorMockup.GetAuthors();
             return View(author);
         }
+
+        public ActionResult Info(int id)
+        {
+            var author = AuthorMockup.GetAuthors().SingleOrDefault(b => b.Id == id);
+
+            if (author == null) return HttpNotFound();
+
+            return View(author);
+        }
     }
 }

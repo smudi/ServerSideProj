@@ -1,0 +1,12 @@
+﻿@model Service.Models.Administrator
+@{
+    ViewBag.Title = "Info";
+}
+
+<h2>Info</h2>
+
+<h1>@Model.Name</h1>
+<p>@Model.Information</p>
+<div>
+</div>
+@Html.ActionLink("Edit Administrator", "Edit", "Administrators")

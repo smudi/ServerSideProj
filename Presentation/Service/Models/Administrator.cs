@@ -5,11 +5,12 @@ using System.Web;
 
 namespace Service.Models
 {
-    public class Author
+    public class Administrator
     {
-        public int Id { get; set; }
-        public int BookId { get; set; }
         public String Name { get; set; }
+
+        public int Id { get; set; }
         public string Information { get; set; }
+
     }
 }

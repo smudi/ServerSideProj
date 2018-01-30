@@ -20,7 +20,7 @@
 <ul>
     @foreach (var author in Model)
     {
-        <li><a>@author.Name</a></li>
+        <li><a>@Html.ActionLink(author.Name, "Info", "Authors", new { id = author.Id }, null)</a></li>
     }
 </ul>
 @Html.ActionLink("Create Author", "Create", "Authors")

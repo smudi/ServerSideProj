@@ -12,7 +12,17 @@ namespace Presentation.Controllers
         // GET: Administrator
         public ActionResult Index()
         {
-            return View();
+            var administrator = AdministratorMockup.GetAdministrators();
+            return View(administrator);
+        }
+
+        public ActionResult Info(int id)
+        {
+            var admin = AdministratorMockup.GetAdministrators().SingleOrDefault(b => b.Id == id);
+
+            if (admin == null) return HttpNotFound();
+
+            return View(admin);
         }
     }
 }

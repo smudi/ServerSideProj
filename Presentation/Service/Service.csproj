@@ -99,8 +99,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mockups\AdministratorMockup.cs" />
     <Compile Include="Mockups\AuthorMockup.cs" />
     <Compile Include="Mockups\BookMockup.cs" />
+    <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
