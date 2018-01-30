@@ -25,8 +25,8 @@
     <ul>
         @foreach (var book in Model)
         {
-            <li><a>@book.Name)</a></li>
+            <li><a>@book.Name</a></li>
         }
     </ul>
 </div>
-@Html.ActionLink("Create Book", "Create", "Books")
+@Html.ActionLink("Create Book", "Create", "Books", new { @class = "btn" })

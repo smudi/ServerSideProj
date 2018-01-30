@@ -1,6 +1,8 @@
 ﻿body {
-    padding-top: 50px;
+    /*padding-top: 50px;*/
     padding-bottom: 20px;
+    font-family: Ubuntu;
+
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -15,12 +17,47 @@ select,
 textarea {
     max-width: 280px;
 }
+center {
+    background: #909090;
+    font-variant-caps: all-small-caps;
+}
+
+center a {
+    color: #000;
+    font-size: 24px;
+    text-decoration-line: none;
+    margin-bottom:20px;
+}
+
 
 nav {
-    display:flex;
+    display: flex;
+    background: #333;
 }
-.navList{
-    display:inline;
-    
+.navList {
+    display: inline;
+    width: 20%;
+    padding: 40px;
+    font-variant-caps: all-small-caps;
 }
-
+.navList a {
+    color: #fff;
+    text-decoration-line: none;
+}
+.btn{
+    border-radius: 3px;
+    background: #444;
+    color: #fff;
+    text-decoration-line:none;
+    padding: 5px;
+    box-shadow: 2px 2px 2px #555;
+}
+.input{
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px #555;
+}
+#searchBox {
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px #555;
+    height: 30px;
+}
