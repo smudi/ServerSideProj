@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Service.Mockups;
+using Repository.Mockups;
 
 namespace Presentation.Controllers
 {
@@ -12,13 +12,14 @@ namespace Presentation.Controllers
         // GET: Administrator
         public ActionResult Index()
         {
-            var administrator = AdministratorMockup.GetAdministrators();
-            return View(administrator);
+            RepositoryMockup repo = (RepositoryMockup)Session["repo"];
+            return View(repo.AdminList);
         }
 
         public ActionResult Info(int id)
         {
-            var admin = AdministratorMockup.GetAdministrators().SingleOrDefault(b => b.Id == id);
+            RepositoryMockup repo = (RepositoryMockup)Session["repo"];
+            var admin = repo.AdminList.SingleOrDefault(b => b.Id == id);
 
             if (admin == null) return HttpNotFound();
 

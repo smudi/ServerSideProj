@@ -1,0 +1,15 @@
+﻿@model Service.Models.Book
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @:Name: @Html.TextBox("Name", Model.Name)
+    @:Author: @Html.TextBox("Author", Model.Author)
+    @:Id: @Html.TextBox("Id", Model.Id)
+    @:Information: @Html.TextArea("Information",Model.Information)
+    <input type="submit" value="Add" formmethod="post" />
+}
