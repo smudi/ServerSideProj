@@ -3,13 +3,13 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Book</h2>
 
 @using (Html.BeginForm())
 {
-    @:Name: @Html.TextBox("Name", Model.Name)
-    @:Author: @Html.TextBox("Author", Model.Author)
-    @:Id: @Html.TextBox("Id", Model.Id)
-    @:Information: @Html.TextArea("Information",Model.Information)
-    <input type="submit" value="Add" formmethod="post" />
+    @:<label class="editLabel">Name:</label> @Html.TextBox("Name", Model.Name)<br/>
+    @:<label class="editLabel">Author:</label> @Html.TextBox("Author", Model.Author)<br />
+    @:<label class="editLabel">Id:</label> @Html.TextBox("Id", Model.Id)<br />
+    @:<label class="editLabel">Information:</label> @Html.TextArea("Information",Model.Information)<br />
+    <input type="submit" value="Add" formmethod="post" class="btn" />
 }

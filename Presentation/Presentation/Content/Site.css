@@ -2,7 +2,7 @@
     /*padding-top: 50px;*/
     padding-bottom: 20px;
     font-family: Ubuntu;
-
+    background-color: antiquewhite;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -60,4 +60,31 @@ nav {
     border-radius: 3px;
     box-shadow: 1px 1px 1px #555;
     height: 30px;
+}
+input {
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px #555;
+    height: 30px;
+    border: 1px solid #666;
+    width: 200px;
+    margin-bottom: 5px;
+}
+h2{
+    text-align: center;
+    border-bottom: 1px groove;
+    font-variant-caps: small-caps;
+}
+.editLabel{
+    font-size: 1.2em;
+    color: black;
+    width: 100px;
+    display: inline-block;
+    margin-right: 20px;
+}
+textarea {
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px #555;
+    border: 1px solid #666;
+    width: 200px;
+    margin-bottom: 5px;
 }
