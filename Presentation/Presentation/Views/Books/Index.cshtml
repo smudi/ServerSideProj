@@ -10,12 +10,11 @@
     <p>There are no books</p>
 }
 
-<div class="input-group">
+<div class="search-div">
     @using (Html.BeginForm())
     {
-        @:Search
         @Html.TextBox("searchBox")
-        <a href="#" class="btn btn-default">Search</a>
+        <a href="#" class="btn searchBtn">Search</a>
         @*<input type="submit" value="search"/>*@
 
     }
@@ -25,8 +24,8 @@
     <ul>
         @foreach (var book in Model)
         {
-            <li><a>@Html.ActionLink(book.Name, "Info", "Books", new { id = book.Id }, null)</a></li>
+            <li class="list-item">@Html.ActionLink(book.Name, "Info", "Books", new { id = book.Id }, null)</li>
         }
     </ul>
 </div>
-@Html.ActionLink("Create Book", "Create", "Books", new { @class = "btn" })
+@Html.ActionLink("Create Book", "Create", "Books", new { @class = "btn createBtn" })

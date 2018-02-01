@@ -9,9 +9,8 @@
 <div class="input-group">
     @using (Html.BeginForm())
     {
-        @:Search
         @Html.TextBox("searchBox")
-        <a href="#" class="btn btn-default">Search</a>
+        <a href="#" class="btn searchBtn">Search</a>
             @*<input type="submit" value="search"/>*@
 
     }
@@ -20,8 +19,8 @@
 <ul>
     @foreach (var author in Model)
     {
-        <li><a>@Html.ActionLink(author.Name, "Info", "Authors", new { id = author.Id }, null)</a></li>
+        <li class="list-item">@Html.ActionLink(author.Name, "Info", "Authors", new { id = author.Id }, null)</li>
     }
 </ul>
-@Html.ActionLink("Create Author", "Create", "Authors")
+@Html.ActionLink("Create Author", "Create", "Authors", new { @class = "btn createBtn" })
 

@@ -2,7 +2,7 @@
     /*padding-top: 50px;*/
     padding-bottom: 20px;
     font-family: Ubuntu;
-    background-color: antiquewhite;
+    background-color: whitesmoke;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -24,7 +24,7 @@ center {
 
 center a {
     color: #000;
-    font-size: 24px;
+    font-size: 2em;
     text-decoration-line: none;
     margin-bottom:20px;
 }
@@ -32,7 +32,7 @@ center a {
 
 nav {
     display: flex;
-    background: #333;
+    background: #555;
 }
 .navList {
     display: inline;
@@ -41,16 +41,38 @@ nav {
     font-variant-caps: all-small-caps;
 }
 .navList a {
-    color: #fff;
-    text-decoration-line: none;
+        color: #fff;
+        text-decoration-line: none;
+        text-shadow: 10px 10px 10px #000;
+        font-size: 1.2em;
 }
+.navList a:hover {
+        /*text-decoration-line: underline;*/
+        text-shadow: none;
+        color: lightblue;
+    }
 .btn{
     border-radius: 3px;
-    background: #444;
     color: #fff;
     text-decoration-line:none;
     padding: 5px;
-    box-shadow: 2px 2px 2px #555;
+    box-shadow: 2px 2px 2px #333;
+}
+.btn:hover{
+    box-shadow: none;
+    cursor: pointer;
+}
+.saveBtn{
+    background: seagreen;
+}
+.cancelBtn{
+    background: orangered;
+}
+.searchBtn{
+    background-color: dodgerblue;
+}
+.createBtn{
+    background-color: rebeccapurple;
 }
 .input{
     border-radius: 3px;
@@ -58,16 +80,22 @@ nav {
 }
 #searchBox {
     border-radius: 3px;
-    box-shadow: 1px 1px 1px #555;
+    /*box-shadow: 1px 1px 1px #555;*/
     height: 30px;
 }
 input {
     border-radius: 3px;
-    box-shadow: 1px 1px 1px #555;
+    box-shadow: 1px 1px 1px #333;
     height: 30px;
     border: 1px solid #666;
     width: 200px;
     margin-bottom: 5px;
+}
+input:active{
+    box-shadow: none;
+}
+input:focus{
+    box-shadow: none;
 }
 h2{
     text-align: center;
@@ -76,15 +104,53 @@ h2{
 }
 .editLabel{
     font-size: 1.2em;
-    color: black;
+    color: #fff;
     width: 100px;
-    display: inline-block;
+    display: block;
     margin-right: 20px;
+    font-variant-caps: all-small-caps;
 }
 textarea {
     border-radius: 3px;
-    box-shadow: 1px 1px 1px #555;
     border: 1px solid #666;
     width: 200px;
     margin-bottom: 5px;
+    box-shadow: 1px 1px 1px #333;
+}
+.list-item{
+    height: 50px;
+    background: #fff;
+    border: 1px groove;
+    color: black;
+    text-decoration-line: none;
+    align-content: center;
+    vertical-align: central;
+    margin: 5px;
+    line-height: 50px;
+    border-radius: 3px;
+    list-style: none;
+    box-shadow: 2px 2px 2px #999;
+}
+.list-item a{
+    color: black;
+    text-decoration-line: none;
+    float: left;
+}
+form {
+    width: -moz-fit-content;
+    padding: 5px;
+ 
+}
+.form-div {
+    width: -moz-fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    background: #555;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px grey, 1px 1px 1px grey, 1px 1px 1px grey;
+}
+.search-div {
+    /*width: -moz-fit-content;
+    margin-left: auto;
+    margin-right: auto;*/
 }

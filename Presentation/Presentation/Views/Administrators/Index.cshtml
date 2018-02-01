@@ -11,9 +11,8 @@
 <div class="input-group">
     @using (Html.BeginForm())
     {
-        @:Search
         @Html.TextBox("searchBox")
-        <a href="#" class="btn btn-default">Search</a>
+        <a href="#" class="btn searchBtn">Search</a>
         @*<input type="submit" value="search"/>*@
 
     }
@@ -22,7 +21,7 @@
 <ul>
     @foreach (var admin in Model)
     {
-        <li><a>@Html.ActionLink(admin.Name, "Info", "Administrators", new { id = admin.Id }, null)</a></li>
+        <li class="list-item">@Html.ActionLink(admin.Name, "Info", "Administrators", new { id = admin.Id }, null)</li>
     }
 </ul>
-@Html.ActionLink("Create Administrator", "Create", "Administrators")
+@Html.ActionLink("Create Administrator", "Create", "Administrators", new { @class = "btn createBtn" })
