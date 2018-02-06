@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Service.Models.Administrator>
+﻿@*@model IEnumerable<Repository.ADMINISTRATOR>*@
 @{ 
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,9 +19,9 @@
 </div>
 
 <ul>
-    @foreach (var admin in Model)
+    @*@foreach (var admin in Model)
     {
         <li class="list-item">@Html.ActionLink(admin.Name, "Info", "Administrators", new { id = admin.Id }, null)</li>
-    }
+    }*@
 </ul>
-@Html.ActionLink("Create Administrator", "Create", "Administrators", new { @class = "btn createBtn" })
+@*@Html.ActionLink("Create Administrator", "Create", "Administrators", new { @class = "btn createBtn" })*@

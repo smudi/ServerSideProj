@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Service.Models.Author>
+﻿@model IEnumerable<Repository.AUTHOR>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,7 +19,7 @@
 <ul>
     @foreach (var author in Model)
     {
-        <li class="list-item">@Html.ActionLink(author.Name, "Info", "Authors", new { id = author.Id }, null)</li>
+        <li class="list-item">@Html.ActionLink(author.FirstName == null ? "missing" : author.FirstName, "Info", "Authors", new { id = author.Aid }, null)</li>
     }
 </ul>
 @Html.ActionLink("Create Author", "Create", "Authors", new { @class = "btn createBtn" })

@@ -1,12 +1,24 @@
-﻿@model Service.Models.Author
+﻿@model Repository.AUTHOR
 @{
     ViewBag.Title = "Info";
 }
 
 <h2>Info</h2>
 <div class="info-div">
-    <h1 class="info-title">@Model.Name</h1>
-    <p>@Model.Information</p>
+    <h1 class="info-title">@Model.FirstName</h1>
+    <h1>@Model.LastName</h1>
+    <p>@Model.BirthYear</p>
+
+    <div class="list-group">
+        <ul>
+            @foreach (var book in Model.BOOKs)
+            {
+                <li class="list-item">@Html.ActionLink(book.Title, "Info", "Books", new { id = book.ISBN }, null)</li>
+
+            }
+        </ul>
+    </div>
+
 </div>
 <div>
 </div>

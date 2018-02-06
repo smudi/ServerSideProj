@@ -1,4 +1,4 @@
-﻿@model Service.Models.Book
+﻿@model Repository.BOOK
 @{
     ViewBag.Title = "Info";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,9 +6,12 @@
 
 <h2>Info</h2>
     <div class="info-div">
-        <h1 class="info-title">@Model.Name</h1>
-        <p>@Model.Information</p>
+        <h1 class="info-title">@Model.Title</h1>
+        <p>@Model.publicationinfo</p>
     </div>
+<p>@Model.PublicationYear</p>
+<br/>
+<p>@Model.pages</p>
 <div>
 </div>
-@Html.ActionLink("Edit Book", "Edit", "Books", new { id = Model.Id, @class = "btn createBtn"}, null)
+@Html.ActionLink("Edit Book", "Edit", "Books", new { id = Model.ISBN, @class = "btn createBtn"}, null)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Repository.Mockups;
+using Repository;
 
 namespace Presentation.Controllers
 {
@@ -12,17 +12,16 @@ namespace Presentation.Controllers
         // GET: Authors
         public ActionResult Index()
         {
-            RepositoryMockup repo = (RepositoryMockup)Session["repo"];
-            return View(repo.AuthorList);
+            LibDb db = new LibDb();
+            return View(db.AUTHORs.ToList());
         }
 
         public ActionResult Info(int id)
         {
-            RepositoryMockup repo = (RepositoryMockup)Session["repo"];
-            var author = repo.AuthorList.SingleOrDefault(b => b.Id == id);
-
+            LibDb db = new LibDb();
+            BOOK book = new BOOK();
+            AUTHOR author = db.AUTHORs.Where(a => a.Aid == id).FirstOrDefault();            
             if (author == null) return HttpNotFound();
-
             return View(author);
         }
     }
