@@ -22,7 +22,7 @@ namespace Service.Models
 
         public short? pages { get; set; }
 
-        //public virtual ICollection<AUTHOR> AUTHORs { get; set; }
+        public virtual ICollection<Author> Authors { get; set; }
 
         static private EBook _eBookObj = new EBook();
 
@@ -31,6 +31,7 @@ namespace Service.Models
             BOOK bookObj = _eBookObj.Find(id); // go to EBook in repository, get the book from the database
             Book book = Mapper.Map<Book>(bookObj); // save book as Book object in Service
             book.Title = book.Title.Trim();
+            book.Authors = Mapper.Map<List<AUTHOR>, List<Author>>(bookObj.AUTHORs.ToList()); 
             return book;
         }
         static public List<Book> getBookList()

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.IO;
 
 namespace Repository.Support
 {
@@ -19,7 +22,7 @@ namespace Repository.Support
         {
             using (var db = new LibDb())
             {
-                return db.AUTHORs.Where(b => b.Aid == id).FirstOrDefault();
+                return db.AUTHORs.Include(x => x.BOOKs).ToList().Find(d => d.Aid == id);
             }
         }
         public List<AUTHOR> List()  //Retrieves all authors

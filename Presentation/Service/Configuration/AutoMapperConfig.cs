@@ -25,7 +25,7 @@ namespace Service.Configuration
         {
             public ToBookProfile()
             {
-                CreateMap<BOOK, Book>();
+                CreateMap<BOOK, Book>().ForMember(m => m.Authors, opt => opt.Ignore());
             }
         }
         public class FromBookProfile : Profile
@@ -40,7 +40,7 @@ namespace Service.Configuration
         {
             public ToAuthorProfile()
             {
-                CreateMap<AUTHOR, Author>();
+                CreateMap<AUTHOR, Author>().ForMember(m => m.Books, opt => opt.Ignore());
             }
         }
         public class FromAuthorProfile : Profile

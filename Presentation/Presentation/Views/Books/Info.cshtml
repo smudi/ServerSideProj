@@ -12,6 +12,15 @@
 <p>@Model.PublicationYear</p>
 <br/>
 <p>@Model.pages</p>
+<div class="list-group">
+        <ul>
+            @foreach (var author in Model.Authors)
+            {
+                <li class="list-item">@Html.ActionLink(author.FirstName, "Info", "Books", new { id = author.Aid }, null)</li>
+
+            }
+        </ul>
+    </div>
 <div>
 </div>
 @Html.ActionLink("Edit Book", "Edit", "Books", new { id = Model.ISBN, @class = "btn createBtn"}, null)

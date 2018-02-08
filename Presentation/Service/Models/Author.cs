@@ -18,7 +18,7 @@ namespace Service.Models
 
         public string BirthYear { get; set; }
 
-        //public virtual ICollection<BOOK> BOOKs { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
 
         static private EAuthor _eAuthorObj = new EAuthor();
 
@@ -28,6 +28,7 @@ namespace Service.Models
             Author author = Mapper.Map<Author>(authorObj); // save author as Author object in Service
             author.FirstName = author.FirstName.Trim();
             author.LastName = author.LastName.Trim();
+            author.Books = Mapper.Map<List<BOOK>, List<Book>>(authorObj.BOOKs.ToList());
             return author;
         }
         static public List<Author> getAuthorList()
