@@ -22,7 +22,8 @@ namespace Repository.Support
         {
             using (var db = new LibDb())
             {
-                return db.BOOKs.Where(b => b.ISBN == id).FirstOrDefault(); 
+                return db.BOOKs.Include(x => x.AUTHORs).ToList().Find(d => d.ISBN == id);
+                //db.BOOKs.Where(b => b.ISBN == id).FirstOrDefault(); 
             }
         }
         public List<BOOK> List()  //Retrieves all books

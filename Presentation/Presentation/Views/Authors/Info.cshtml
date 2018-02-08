@@ -9,17 +9,17 @@
     <h1>@Model.LastName</h1>
     <p>@Model.BirthYear</p>
 
-    @*<div class="list-group">
+    <div class="list-group">
         <ul>
-            @foreach (var book in Model.BOOKs)
+            @foreach (var book in Model.Books)
             {
                 <li class="list-item">@Html.ActionLink(book.Title, "Info", "Books", new { id = book.ISBN }, null)</li>
 
             }
         </ul>
-    </div>*@
+    </div>
 
 </div>
 <div>
 </div>
-@Html.ActionLink("Edit Author", "Edit", "Authors")
+@*@Html.ActionLink("Edit Author", "Edit", "Authors")*@
