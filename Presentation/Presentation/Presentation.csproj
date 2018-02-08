@@ -212,13 +212,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Repository\Repository.csproj">
-      <Project>{9286727f-86ea-4a88-9f57-0e7385815b9e}</Project>
-      <Name>Repository</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Service\Service.csproj">
       <Project>{6a053202-bafa-4207-8af9-56af3654cc7e}</Project>
       <Name>Service</Name>

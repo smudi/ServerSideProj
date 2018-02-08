@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Repository.BOOK>
+﻿@model IEnumerable<Service.Models.Book>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -21,12 +21,38 @@
 </div>
 
 <div class="list-group">
-    <ul>
+    <table>
+        <tr class="list-header">
+            <td class="list-column">TITLE</td>
+            <td class="list-column">AUTHOR</td>
+
+        </tr>
         @foreach (var book in Model)
         {
-            <li class="list-item"  onclick="location.href='@Url.Action("Info", "Books", new { id = book.ISBN }, null)'">@book.Title, @book.AUTHORs.FirstOrDefault().FirstName</li>
-           
+            <tr onclick="location.href='@Url.Action("Info", "Books", new { id = book.ISBN }, null)'" class="list-item">
+                <td class="list-column">
+                    @book.Title
+                </td>
+                <td class="list-column">
+                    @book.Title
+                </td>
+
+            </tr>
         }
-    </ul>
+
+    </table>
+
 </div>
-@Html.ActionLink("Create Book", "Create", "Books", new { @class = "btn createBtn" })
+    @*<ul>
+        <li style="list-style: none; width: 95%;"><span class="list-column">Title</span><span class="list-column">Author</span><span class="list-column">ISBN</span></li>
+        @foreach (var book in Model)
+        {
+            <li class="list-item"  ><span class="list-column">@book.Title</span><span class="list-column">@book.pages</span><span class="list-column">@book.ISBN</span> </li>
+
+
+            @*<li class="list-item">@Html.ActionLink(book.Title, "Info", "Books", new { id = book.ISBN }, null)</li>*@
+
+    }
+ 
+
+    @*@Html.ActionLink("Create Book", "Create", "Books", new { @class = "btn createBtn" })*@

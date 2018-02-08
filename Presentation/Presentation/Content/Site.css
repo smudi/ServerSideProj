@@ -118,7 +118,19 @@ textarea {
     margin-bottom: 5px;
     box-shadow: 1px 1px 1px #333;
 }
-.list-item{
+.list-header {
+    height: 50px;
+    color: black;
+    text-decoration-line: none;
+    align-content: center;
+    vertical-align: central;
+    margin: 5px;
+    line-height: 50px;
+    list-style: none;
+    display: table;
+    width: 100%;
+} 
+.list-item {
     height: 50px;
     background: #fff;
     border: 1px groove;
@@ -131,6 +143,8 @@ textarea {
     border-radius: 3px;
     list-style: none;
     box-shadow: 2px 2px 2px #999;
+    display: table;
+    width: 100%;
 }
 .list-item:hover{
     background: #f0f0f0;
@@ -169,4 +183,13 @@ form {
 }
 .info-title{
     border-bottom: 1px groove;
+}
+.list-column {
+    width: 25%;
+    border-right: 1px groove;
+    text-align: center;
+    display: table-cell;
+    overflow: hidden;
+    /*white-space: nowrap;*/
+    text-overflow: ellipsis;
 }
