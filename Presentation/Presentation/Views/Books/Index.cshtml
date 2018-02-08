@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Repository.BOOK>
+﻿@model IEnumerable<Service.Models.Book>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,9 +24,8 @@
     <ul>
         @foreach (var book in Model)
         {
-            <li class="list-item">@Html.ActionLink(book.Title, "Info", "Books", new { id = book.ISBN }, null)</li>
-           
+            <li class="list-item">@Html.ActionLink(book.Title, "Info", "Books", new { id = book.ISBN }, null)</li>           
         }
     </ul>
 </div>
-@Html.ActionLink("Create Book", "Create", "Books", new { @class = "btn createBtn" })
+@*@Html.ActionLink("Create Book", "Create", "Books", new { @class = "btn createBtn" })*@

@@ -1,4 +1,4 @@
-﻿@model Repository.AUTHOR
+﻿@model Service.Models.Author
 @{
     ViewBag.Title = "Info";
 }
@@ -9,7 +9,7 @@
     <h1>@Model.LastName</h1>
     <p>@Model.BirthYear</p>
 
-    <div class="list-group">
+    @*<div class="list-group">
         <ul>
             @foreach (var book in Model.BOOKs)
             {
@@ -17,7 +17,7 @@
 
             }
         </ul>
-    </div>
+    </div>*@
 
 </div>
 <div>

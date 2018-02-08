@@ -13,6 +13,7 @@ namespace Presentation
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            Service.Configuration.AutoMapperConfig.Configure();
         }
     }
 }

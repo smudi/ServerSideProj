@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Repository;
+using Service.Models;
 
 namespace Presentation.Controllers
 {
@@ -12,27 +12,17 @@ namespace Presentation.Controllers
      
         // GET: Books
         public ActionResult Index()
-        {
-            LibDb db = new LibDb();          
-            return View(db.BOOKs.ToList());
+        {       
+            return View(Book.getBookList());
         }
         public ActionResult Info(string id)
         {
-            LibDb db = new LibDb(); ;
-            BOOK book = db.BOOKs.Where(b => b.ISBN == id).FirstOrDefault();
-
-            if (book == null) return HttpNotFound();
-
-            return View(book);
+            return View(Book.getBook(id));
         }
 
         public ActionResult Edit(string id)
         {
-            LibDb db = new LibDb();
-            BOOK book = db.BOOKs.Where(b => b.ISBN == id).FirstOrDefault();
-            if (book == null) return HttpNotFound();
-
-            return View(book);
+            return View(Book.getBook(id));
         }
         //[HttpPost]
         //public RedirectToRouteResult Edit(String Name, String Id, String Information, String Author)
