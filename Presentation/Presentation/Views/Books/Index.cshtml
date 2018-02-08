@@ -24,7 +24,7 @@
     <ul>
         @foreach (var book in Model)
         {
-            <li class="list-item">@Html.ActionLink(book.Title, "Info", "Books", new { id = book.ISBN }, null)</li>
+            <li class="list-item"  onclick="location.href='@Url.Action("Info", "Books", new { id = book.ISBN }, null)'">@book.Title, @book.AUTHORs.FirstOrDefault().FirstName</li>
            
         }
     </ul>
