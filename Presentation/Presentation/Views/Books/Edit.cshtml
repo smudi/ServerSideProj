@@ -1,16 +1,23 @@
-﻿@model Service.Models.Book
+﻿@model Presentation.Models.EditBookModel
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit Book</h2>
 <div class="form-div">
-    @using (Html.BeginForm())
-    {
-    <div><label class="editLabel">Title:</label> @Html.TextBox("Name", Model.Title)</div>
-    <div><label class="editLabel">Pages:</label> @Html.TextBox("Author", Model.pages)</div>
-    <div><label class="editLabel">Publication Year:</label> @Html.TextBox("Id", Model.PublicationYear)</div>
-    <div><label class="editLabel">Information:</label> @Html.TextArea("Information", Model.publicationinfo)</div>
-    <div style="height: 30px;"><input type="submit" value="Save" formmethod="post" class="btn saveBtn" style="float:right;" /></div>
-    }
+    
+        <form method="post" action="/Books/Edit?ISBN=@Model.Book.ISBN">
+            <div><label class="editLabel">Title:</label> @Html.TextBox("Name", Model.Book.Title)</div>
+            <div><label class="editLabel">Pages:</label> @Html.TextBox("Pages", Model.Book.pages)</div>
+            <div><label class="editLabel">Publication Year:</label> @Html.TextBox("publicationYear", Model.Book.PublicationYear)</div>
+            <div><label class="editLabel">Information:</label> @Html.TextArea("Information", Model.Book.publicationinfo)</div>
+            <select size="10" name="authors" multiple>
+                @foreach (var author in Model.Authors)
+                {
+                    <option @if (@Model.Book.Authors.FirstOrDefault(a => a.Aid == author.Aid) != null) { <text>Selected</text> } value="@author.Aid">@author.FirstName</option>
+                }
+            </select>
+            <div style="height: 30px;"><input type="submit" value="Save" formmethod="post" class="btn saveBtn" style="float:right;" /></div>
+        </form>
+    
 </div>

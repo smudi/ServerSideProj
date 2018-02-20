@@ -38,5 +38,19 @@ namespace Service.Models
         {
             return Mapper.Map<List<BOOK>, List<Book>>(_eBookObj.List());
         }
+
+        static public void Update(string _Title, string _ISBN, string _PubYear, string _PubInfo, short _Pages, List<Author> list)
+        {
+            Book bookObj = Book.getBook(_ISBN);
+
+            bookObj.Title = _Title;
+            bookObj.PublicationYear = _PubYear;
+            bookObj.publicationinfo = _PubInfo;
+            bookObj.pages = _Pages;
+
+            bookObj.Authors = list;
+
+            _eBookObj.Update(Mapper.Map<BOOK>(bookObj));
+        }
     }
 }

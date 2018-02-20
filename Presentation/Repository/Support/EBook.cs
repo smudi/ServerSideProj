@@ -34,5 +34,31 @@ namespace Repository.Support
                 return query.ToList();
             }
         }
+
+        public void Update(BOOK bookObj)
+        {
+            using (var db = new LibDb())
+            {
+
+                var b = db.BOOKs.Include(x => x.AUTHORs).ToList().Find(d => d.ISBN == bookObj.ISBN);
+                b.AUTHORs.Clear();
+
+                db.SaveChanges();
+            }
+            using (var db = new LibDb())
+            {
+
+                db.BOOKs.Attach(bookObj);
+                db.Entry(bookObj).State = EntityState.Modified;
+
+                foreach(var author in bookObj.AUTHORs)
+                {
+                    db.AUTHORs.Attach(author);
+                    db.Entry(author).State = EntityState.Unchanged;
+                }
+
+                db.SaveChanges();
+            }
+        }
     }
 }
