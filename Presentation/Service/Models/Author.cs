@@ -26,14 +26,32 @@ namespace Service.Models
         {
             AUTHOR authorObj = _eAuthorObj.Find(id); // go to EAuthor in repository, get the author from the database
             Author author = Mapper.Map<Author>(authorObj); // save author as Author object in Service
-            author.FirstName = author.FirstName.Trim();
-            author.LastName = author.LastName.Trim();
+            author.FirstName = author.FirstName;
+            author.LastName = author.LastName;
             author.Books = Mapper.Map<List<BOOK>, List<Book>>(authorObj.BOOKs.ToList());
             return author;
         }
         static public List<Author> getAuthorList()
         {
             return Mapper.Map<List<AUTHOR>, List<Author>>(_eAuthorObj.List());
+        }
+
+        static public void Update(string _FirstName, string _LastName, string _BirthYear, int _Aid, List<Book> list)
+        {
+            Author authorObj = Author.getAuthor(_Aid);
+
+            authorObj.FirstName = _FirstName;
+            authorObj.LastName = _LastName;
+            authorObj.BirthYear = _BirthYear;
+            authorObj.Aid = _Aid;
+
+            authorObj.Books = list;
+
+            _eAuthorObj.Update(Mapper.Map<AUTHOR>(authorObj));
+        }
+        static public void Add(Author authorObj)
+        {
+            _eAuthorObj.Add(Mapper.Map<AUTHOR>(authorObj));
         }
     }
 }

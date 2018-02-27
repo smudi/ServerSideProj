@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Service.Models.Book>
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add Author</h2>
+<div class="form-div">
+
+    <form method="post" action="/Authors/Add">
+        <div><label class="editLabel">Aid:</label> @Html.TextBox("Aid", "")</div>
+        <div><label class="editLabel">First name:</label> @Html.TextBox("FirstName", "")</div>
+        <div><label class="editLabel">Last name:</label> @Html.TextBox("LastName","")</div>
+        <div><label class="editLabel">Birth year:</label> @Html.TextBox("BirthYear", "")</div>
+
+        <select size="10" name="books" multiple>
+            @foreach (var book in Model)
+            {
+                <option value="@book.ISBN">@book.Title</option>
+            }
+        </select>
+        <div style="height: 30px;"><input type="submit" value="Add" formmethod="post" class="btn saveBtn" style="float:right;" /></div>
+    </form>
+
+</div>

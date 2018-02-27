@@ -33,5 +33,56 @@ namespace Repository.Support
                 return query.ToList();
             }
         }
+
+        public void Update(AUTHOR authorObj)
+        {
+            using (var db = new LibDb())
+            {
+
+                var b = db.AUTHORs.Include(x => x.BOOKs).ToList().Find(d => d.Aid ==
+                authorObj.Aid);
+                b.BOOKs.Clear();
+
+                db.SaveChanges();
+            }
+
+            var newBooks = authorObj.BOOKs;
+            authorObj.BOOKs = new List<BOOK>();
+
+            using (var db = new LibDb())
+            {
+
+                db.AUTHORs.Attach(authorObj);
+                db.Entry(authorObj).State = EntityState.Modified;
+
+                foreach (var book in newBooks)
+                {
+                    db.BOOKs.Attach(book);
+                    authorObj.BOOKs.Add(book);
+                }
+
+                db.SaveChanges();
+            }
+        }
+        public void Add(AUTHOR authorObj)
+        {
+            using (var db = new LibDb())
+            {
+                using (DbContextTransaction transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        db.AUTHORs.Load();
+                        db.AUTHORs.Add(authorObj);  // Prepare query
+                        db.SaveChanges();         // Run the query
+                        transaction.Commit();   //  Permanent the result, writing to disc and closing transaction
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();  //Undo all changes if exception is thrown
+                    }
+                }
+            }
+        }
     }
 }

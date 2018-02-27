@@ -40,25 +40,52 @@ namespace Repository.Support
             using (var db = new LibDb())
             {
 
-                var b = db.BOOKs.Include(x => x.AUTHORs).ToList().Find(d => d.ISBN == bookObj.ISBN);
+                var b = db.BOOKs.Include(x => x.AUTHORs).ToList().Find(d => d.ISBN ==
+                bookObj.ISBN);
                 b.AUTHORs.Clear();
 
                 db.SaveChanges();
             }
+
+            var newAuthors = bookObj.AUTHORs;
+            bookObj.AUTHORs = new List<AUTHOR>();
+
             using (var db = new LibDb())
             {
 
                 db.BOOKs.Attach(bookObj);
                 db.Entry(bookObj).State = EntityState.Modified;
 
-                foreach(var author in bookObj.AUTHORs)
+                foreach (var author in newAuthors)
                 {
                     db.AUTHORs.Attach(author);
-                    db.Entry(author).State = EntityState.Unchanged;
+                    bookObj.AUTHORs.Add(author);
                 }
 
                 db.SaveChanges();
+    }
+        }
+
+        public void Add(BOOK bookObj)
+        {
+            using (var db = new LibDb())
+            {
+                using (DbContextTransaction transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        db.BOOKs.Load();
+                        db.BOOKs.Add(bookObj);  // Prepare query
+                        db.SaveChanges();         // Run the query
+                        transaction.Commit();   //  Permanent the result, writing to disc and closing transaction
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();  //Undo all changes if exception is thrown
+                    }
+                }
             }
         }
+
     }
 }

@@ -30,7 +30,7 @@ namespace Service.Models
         {
             BOOK bookObj = _eBookObj.Find(id); // go to EBook in repository, get the book from the database
             Book book = Mapper.Map<Book>(bookObj); // save book as Book object in Service
-            book.Title = book.Title.Trim();
+            book.Title = book.Title;
             book.Authors = Mapper.Map<List<AUTHOR>, List<Author>>(bookObj.AUTHORs.ToList()); 
             return book;
         }
@@ -51,6 +51,11 @@ namespace Service.Models
             bookObj.Authors = list;
 
             _eBookObj.Update(Mapper.Map<BOOK>(bookObj));
+        }
+
+        static public void Add(Book bookObj)
+        {
+            _eBookObj.Add(Mapper.Map<BOOK>(bookObj));
         }
     }
 }
