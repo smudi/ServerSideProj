@@ -1,0 +1,23 @@
+﻿@model Presentation.Models.EditAuthorModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Author</h2>
+<div class="form-div">
+
+    <form method="post" action="/Authors/Edit?Aid=@Model.Author.Aid">
+        <div><label class="editLabel">First name:</label> @Html.TextBox("FirstName", Model.Author.FirstName)</div>
+        <div><label class="editLabel">Last name:</label> @Html.TextBox("LastName", Model.Author.LastName)</div>
+        <div><label class="editLabel">Birth year:</label> @Html.TextBox("BirthYear", Model.Author.BirthYear)</div>
+
+        <select size="10" name="books" multiple>
+            @foreach (var book in Model.Books)
+            {
+                <option @if (@Model.Author.Books.FirstOrDefault(a => a.ISBN == book.ISBN) != null) { <text> Selected</text> } value="@book.ISBN">@book.Title</option>
+            }
+        </select>
+        <div style="height: 30px;"><input type="submit" value="Save" formmethod="post" class="btn saveBtn" style="float:right;" /></div>
+    </form>
+
+</div>

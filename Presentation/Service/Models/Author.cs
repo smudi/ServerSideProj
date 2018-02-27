@@ -35,5 +35,19 @@ namespace Service.Models
         {
             return Mapper.Map<List<AUTHOR>, List<Author>>(_eAuthorObj.List());
         }
+
+        static public void Update(string _FirstName, string _LastName, string _BirthYear, int _Aid, List<Book> list)
+        {
+            Author authorObj = Author.getAuthor(_Aid);
+
+            authorObj.FirstName = _FirstName;
+            authorObj.LastName = _LastName;
+            authorObj.BirthYear = _BirthYear;
+            authorObj.Aid = _Aid;
+
+            authorObj.Books = list;
+
+            _eAuthorObj.Update(Mapper.Map<AUTHOR>(authorObj));
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Service.Models;
+using Presentation.Models;
 
 namespace Presentation.Controllers
 {
@@ -19,5 +20,48 @@ namespace Presentation.Controllers
         {
             return View(Author.getAuthor(id));
         }
+
+        public ActionResult Edit(int id)
+        {        
+            EditAuthorModel obj = new EditAuthorModel();
+            obj.Author = Author.getAuthor(id);
+            obj.Books = Book.getBookList();
+            return View(obj);
+        }
+        [HttpPost]
+        public RedirectToRouteResult Edit(string FirstName, string LastName, string BirthYear, string Aid, List<string> books)
+        {
+            TempData["firstName"] = FirstName;
+            TempData["lastName"] = LastName;
+            TempData["birthYear"] = BirthYear;
+            TempData["aid"] = Convert.ToInt32(Aid);
+
+            List<string> booksList = new List<string>();
+            foreach (var bo in books)
+            {
+                booksList.Add(bo);
+            }
+            TempData["books"] = booksList;
+            return RedirectToAction("Update");
+        }
+
+        public RedirectToRouteResult Update()
+        {
+            List<Book> Books = new List<Book>();
+            foreach (var bo in TempData["books"] as List<string>)
+            {
+                Books.Add(new Book
+                {
+                    ISBN = bo
+                });
+
+            }
+
+            Author.Update(Convert.ToString(TempData["firstName"]), Convert.ToString(TempData["lastName"]),
+                                        Convert.ToString(TempData["birthYear"]), Convert.ToInt32(TempData["aid"]),
+                                         Books);
+            return RedirectToAction("Index", "Authors");
+        }
+
     }
 }
