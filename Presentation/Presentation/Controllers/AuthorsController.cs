@@ -62,6 +62,20 @@ namespace Presentation.Controllers
                                          Books);
             return RedirectToAction("Index", "Authors");
         }
+        public ActionResult Add()
+        {
+            return View(Book.getBookList());
+        }
 
+        [HttpPost]
+        public RedirectToRouteResult Add(Author authorObj)
+        {
+            return RedirectToAction("Store", authorObj);
+        }
+        public RedirectToRouteResult Store(Author authorObj)
+        {
+            Author.Add(authorObj);
+            return RedirectToAction("Index", "Authors");
+        }
     }
 }

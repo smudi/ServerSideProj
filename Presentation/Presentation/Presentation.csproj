@@ -206,6 +206,8 @@
     <Content Include="Views\Administrators\Info.cshtml" />
     <Content Include="Views\Books\Edit.cshtml" />
     <Content Include="Views\Authors\Edit.cshtml" />
+    <Content Include="Views\Books\Add.cshtml" />
+    <Content Include="Views\Authors\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

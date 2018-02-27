@@ -26,6 +26,7 @@ namespace Presentation.Controllers
             obj.Authors = Author.getAuthorList();
             return View(obj);
         }
+
         [HttpPost]
         public RedirectToRouteResult Edit(string Name, string Pages, string publicationYear, string Information, string ISBN, List<string> authors)
         {
@@ -59,6 +60,22 @@ namespace Presentation.Controllers
             Book.Update(Convert.ToString(TempData["title"]), Convert.ToString(TempData["isbn"]),
                                         Convert.ToString(TempData["pubYear"]), Convert.ToString(TempData["info"]),
                                         Convert.ToInt16(TempData["pages"]), Authors);
+            return RedirectToAction("Index", "Books");
+        }
+
+        public ActionResult Add()
+        {
+            return View(Author.getAuthorList());
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult Add(Book bookObj)
+        {
+            return RedirectToAction("Store",bookObj);
+        }
+        public RedirectToRouteResult Store(Book bookObj)
+        {
+            Book.Add(bookObj);
             return RedirectToAction("Index", "Books");
         }
     }

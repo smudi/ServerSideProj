@@ -64,5 +64,25 @@ namespace Repository.Support
                 db.SaveChanges();
             }
         }
+        public void Add(AUTHOR authorObj)
+        {
+            using (var db = new LibDb())
+            {
+                using (DbContextTransaction transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        db.AUTHORs.Load();
+                        db.AUTHORs.Add(authorObj);  // Prepare query
+                        db.SaveChanges();         // Run the query
+                        transaction.Commit();   //  Permanent the result, writing to disc and closing transaction
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();  //Undo all changes if exception is thrown
+                    }
+                }
+            }
+        }
     }
 }

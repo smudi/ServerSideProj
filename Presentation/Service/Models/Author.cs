@@ -26,8 +26,8 @@ namespace Service.Models
         {
             AUTHOR authorObj = _eAuthorObj.Find(id); // go to EAuthor in repository, get the author from the database
             Author author = Mapper.Map<Author>(authorObj); // save author as Author object in Service
-            author.FirstName = author.FirstName.Trim();
-            author.LastName = author.LastName.Trim();
+            author.FirstName = author.FirstName;
+            author.LastName = author.LastName;
             author.Books = Mapper.Map<List<BOOK>, List<Book>>(authorObj.BOOKs.ToList());
             return author;
         }
@@ -48,6 +48,10 @@ namespace Service.Models
             authorObj.Books = list;
 
             _eAuthorObj.Update(Mapper.Map<AUTHOR>(authorObj));
+        }
+        static public void Add(Author authorObj)
+        {
+            _eAuthorObj.Add(Mapper.Map<AUTHOR>(authorObj));
         }
     }
 }

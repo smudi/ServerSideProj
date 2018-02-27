@@ -22,5 +22,5 @@
         <li class="list-item">@Html.ActionLink(author.FirstName == null ? "missing" : author.FirstName, "Info", "Authors", new { id = author.Aid }, null)</li>
     }
 </ul>
-@Html.ActionLink("Create Author", "Create", "Authors", new { @class = "btn createBtn" })
+@Html.ActionLink("Create Author", "Add", "Authors", new { @class = "btn createBtn" })
 
