@@ -30,9 +30,10 @@ namespace Presentation.Controllers
         public RedirectToRouteResult Edit(string Name, string Pages, string publicationYear, string Information, string ISBN, List<string> authors)
         {
             TempData["title"] = Name;
-            TempData["pubYear"] = Convert.ToInt32(publicationYear);
-            TempData["pages"] = Convert.ToInt32(Pages);
-            TempData["info"] = Information;
+
+            TempData["pubYear"] = publicationYear == "" ? 0 : Convert.ToInt32(publicationYear);
+            TempData["pages"] = Pages == "" ? 0 : Convert.ToInt16(Pages);
+            TempData["info"] = Information == "" ? "" : Information;
             TempData["isbn"] = ISBN;
 
             List<string> authorsList = new List<string>();

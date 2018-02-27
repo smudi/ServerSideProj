@@ -3,20 +3,23 @@
     ViewBag.Title = "Info";
 }
 
-<h2>Info</h2>
+@*<h2>Info</h2>*@
 <div class="info-div">
-    <h1 class="info-title">@Model.FirstName</h1>
-    <h1>@Model.LastName</h1>
-    <p>@Model.BirthYear</p>
-
+    <h1 class="info-title">@Model.FirstName @Model.LastName</h1>
+    <p>Birth year: @Model.BirthYear</p>
+    
     <div class="list-group">
-        <ul>
+        <p>Books:</p>
+        <table>
             @foreach (var book in Model.Books)
             {
-                <li class="list-item">@Html.ActionLink(book.Title, "Info", "Books", new { id = book.ISBN }, null)</li>
+                <tr class="list-item" onclick="location.href='@Url.Action("Info", "Books",new { id = book.ISBN }, null)"> 
+            <td class="list-column list-column-first">
+                    @book.Title
+                </td></tr>
 
             }
-        </ul>
+        </table>
     </div>
 
 </div>

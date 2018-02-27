@@ -21,20 +21,20 @@
 </div>
 
 <div class="list-group">
-    <table>
+    <table style="width:100%;">
         <tr class="list-header">
-            <td class="list-column">TITLE</td>
-            <td class="list-column">AUTHOR</td>
+            <td class="list-column list-column-first">TITLE</td>
+            <td class="list-column list-column-second" >AUTHORS</td>
 
         </tr>
         @foreach (var book in Model)
         {
             <tr onclick="location.href='@Url.Action("Info", "Books", new { id = book.ISBN }, null)'" class="list-item">
-                <td class="list-column">
+                <td class="list-column list-column-first">
                     @book.Title
                 </td>
-                <td class="list-column">
-                    @book.Title
+                <td class="list-column list-column-second">
+                    @book.ISBN
                 </td>
 
             </tr>

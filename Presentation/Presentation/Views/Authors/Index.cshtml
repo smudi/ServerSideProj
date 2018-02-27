@@ -16,11 +16,30 @@
     }
 </div>
 
-<ul>
+@*<ul>
     @foreach (var author in Model)
     {
         <li class="list-item">@Html.ActionLink(author.FirstName == null ? "missing" : author.FirstName, "Info", "Authors", new { id = author.Aid }, null)</li>
     }
-</ul>
+</ul>*@
+<div class="list-group">
+    <table style="width: 100%;">
+        <tr class="list-header">
+            <td class="">AUTHOR</td>
+
+        </tr>
+        @foreach (var author in Model)
+        {
+            <tr onclick="location.href='@Url.Action("Info", "Authors", new { id = author.Aid }, null)'" class="list-item">
+                <td class="">
+                    @author.FirstName @author.LastName
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+</div>
 @Html.ActionLink("Create Author", "Create", "Authors", new { @class = "btn createBtn" })
 
