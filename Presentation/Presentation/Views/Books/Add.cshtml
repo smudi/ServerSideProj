@@ -12,7 +12,7 @@
         <div><label class="editLabel">Pages:</label> @Html.TextBox("pages","")</div>
         <div><label class="editLabel">Publication Year:</label> @Html.TextBox("PublicationYear", "")</div>
         <div><label class="editLabel">Information:</label> @Html.TextArea("publicationinfo", "")</div>
-        <select size="10" name="authors" multiple>
+        <select size="10" name="authorIds" multiple>
             @foreach (var author in Model)
             {
                 <option value="@author.Aid">@author.FirstName</option>

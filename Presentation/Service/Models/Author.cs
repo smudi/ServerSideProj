@@ -49,9 +49,13 @@ namespace Service.Models
 
             _eAuthorObj.Update(Mapper.Map<AUTHOR>(authorObj));
         }
-        static public void Add(Author authorObj)
+        static public void Add(Author author)
         {
-            _eAuthorObj.Add(Mapper.Map<AUTHOR>(authorObj));
+            _eAuthorObj.Add(Mapper.Map<AUTHOR>(author));
+        }
+        static public void Delete(Author author)
+        {
+            _eAuthorObj.Delete(Mapper.Map<AUTHOR>(author));
         }
     }
 }

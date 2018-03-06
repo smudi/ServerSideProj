@@ -57,5 +57,11 @@ namespace Service.Models
         {
             _eBookObj.Add(Mapper.Map<BOOK>(bookObj));
         }
+
+        static public void Delete(Book bookObj)
+        {
+            /* Set the fk-referens for department employees to null */
+            _eBookObj.Delete(Mapper.Map<BOOK>(bookObj));
+        }
     }
 }
