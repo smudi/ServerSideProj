@@ -8,9 +8,9 @@
     
         <form name="editBook" method="post" action="/Books/Edit?ISBN=@Model.Book.ISBN" onsubmit="return validateForm()">
             <div><label class="editLabel">Title:</label><input type="text" value="@Model.Book.Title" name="Name" /> <br/><label id="valName" class="valLabel" style="visibility:collapse;">* Title is required</label></div>
-            <div><label class="editLabel">Pages:</label> @Html.TextBox("Pages", Model.Book.pages)</div>
-            <div><label class="editLabel">Publication Year:</label> @Html.TextBox("publicationYear", Model.Book.PublicationYear)</div>
-            <div><label class="editLabel">Information:</label> @Html.TextArea("Information", Model.Book.publicationinfo)</div>
+            <div><label class="editLabel">Pages:</label><input type="text" value="@Model.Book.pages" name="pages" onkeypress="validate(event)" /><br /><label id="valPages" class="valLabel" style="visibility:collapse;">* Number of pages is required</label></div>
+            <div><label class="editLabel">Publication Year:</label><input type="text" value="@Model.Book.PublicationYear" name="pYear" onkeypress="validate(event)"/><br /><label id="valYear" class="valLabel" style="visibility:collapse;">* Publiction year is required</label></div>
+            <div><label class="editLabel">Information:</label><input type="text" value="@Model.Book.publicationinfo" name="pInfo" /> <br /><label id="valInfo" class="valLabel" style="visibility:collapse;">* Information is required</label></div>
             <select size="10" name="authors" multiple>
                 @foreach (var author in Model.Authors)
                 {
@@ -25,13 +25,45 @@
 <script type="text/javascript">
     function validateForm() {
         var name = document.forms["editBook"]["Name"].value;
+        var pages = document.forms["editBook"]["pages"].value;
+        var pyear = document.forms["editBook"]["pYear"].value;
+        var pinfo = document.forms["editBook"]["pInfo"].value;
+        var isOK = true;
         debugger;
         if (name == "") {
             var nameVal = document.getElementById("valName");
             nameVal.style.visibility = "visible";
-            return false;
+            isOK = false;
         }
-        return true;
+        if (pages == "") {
+            var pagesVal = document.getElementById("valPages");
+            pagesVal.style.visibility = "visible";
+            isOK = false;
+        }
+        if (pyear == "") {
+            var yearVal = document.getElementById("valYear");
+            yearVal.style.visibility = "visible";
+            isOK = false;
+        }
+        if (pinfo == "") {
+            var pinfoVal = document.getElementById("valInfo");
+            pinfoVal.style.visibility = "visible";
+            isOK = false;
+        }
+        if (isOK) {
+            return true;
+        }
+        return false;
 
+    }
+    function validate(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+        var regex = /[0-9\b]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
     }
 </script>

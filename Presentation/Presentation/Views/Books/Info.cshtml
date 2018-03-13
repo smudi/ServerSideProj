@@ -16,7 +16,7 @@
         <ul>
             @foreach (var author in Model.Authors)
             {
-                <li class="list-item">@Html.ActionLink(author.FirstName, "Info", "Books", new { id = author.Aid }, null)</li>
+                <li class="list-item">@Html.ActionLink(author.FirstName, "Info", "Authors", new { id = author.Aid }, null)</li>
 
             }
         </ul>

@@ -6,10 +6,10 @@
 <h2>Edit Author</h2>
 <div class="form-div">
 
-    <form method="post" action="/Authors/Edit?Aid=@Model.Author.Aid">
-        <div><label class="editLabel">First name:</label> @Html.TextBox("FirstName", Model.Author.FirstName)</div>
-        <div><label class="editLabel">Last name:</label> @Html.TextBox("LastName", Model.Author.LastName)</div>
-        <div><label class="editLabel">Birth year:</label> @Html.TextBox("BirthYear", Model.Author.BirthYear)</div>
+    <form method="post" name="editAuthor" action="/Authors/Edit?Aid=@Model.Author.Aid" onsubmit="return validateForm()">
+        <div><label class="editLabel">First name:</label><input name="FirstName" type="text" value="@Model.Author.FirstName" /><br /><label id="valFirstName" class="valLabel" style="visibility:collapse;">* First name is required</label></div>
+        <div><label class="editLabel">Last name:</label><input name="LastName" type="text" value="@Model.Author.LastName" /><br /><label id="valLastName" class="valLabel" style="visibility:collapse;">* Last name is required</label></div>
+        <div><label class="editLabel">Birth year:</label><input name="BirthYear" type="text" value="@Model.Author.BirthYear" onkeypress="validate(evt)" /><br /><label id="valBirthYear" class="valLabel" style="visibility:collapse;">* Birth year is required</label></div>
 
         <select size="10" name="books" multiple>
             @foreach (var book in Model.Books)
@@ -21,3 +21,42 @@
     </form>
 
 </div>
+<script type="text/javascript">
+    function validateForm() {
+        var firstname = document.forms["editAuthor"]["FirstName"].value;
+        var lastname = document.forms["editAuthor"]["LastName"].value;
+        var bYear = document.forms["editAuthor"]["BirthYear"].value;
+        var isOK = true;
+        debugger;
+        if (firstname == "") {
+            var valFirstName = document.getElementById("valFirstName");
+            valFirstName.style.visibility = "visible";
+            isOK = false;
+        }
+        if (lastname == "") {
+            var valLastName = document.getElementById("valLastName");
+            valLastName.style.visibility = "visible";
+            isOK = false;
+        }
+        if (bYear == "") {
+            var valBirthYear = document.getElementById("valBirthYear");
+            valBirthYear.style.visibility = "visible";
+            isOK = false;
+        }
+        if (isOK) {
+            return true;
+        }
+        return false;
+
+    }
+    function validate(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+        var regex = /[0-9\b]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+</script>

@@ -11,22 +11,22 @@
 }
 
 <div class="search-div">
-    @using (Html.BeginForm())
-    {
-        @Html.TextBox("searchBox")
-        <a href="#" class="btn searchBtn">Search</a>
-        @*<input type="submit" value="search"/>*@
-
-    }
+    <input type="text" id="searchBox" onkeyup="searchFunction()" placeholder="Filter books"/>
+    <div style="float:right; display:flex;">
+        @Html.ActionLink("Create Book", "Add", "Books", new { @class = "btn createBtn" })
+    </div>
 </div>
 
+
 <div class="list-group">
-    <table style="width:100%;">
+    <table style="width:100%;" id="bookTable">
+        <thead>
         <tr class="list-header">
-            <td class="list-column list-column-first">TITLE</td>
-            <td class="list-column list-column-second" >AUTHORS</td>
+            <th class="list-column list-column-first">TITLE</th>
+            <th class="list-column list-column-second">AUTHORS</th>
 
         </tr>
+        </thead>
         @foreach (var book in Model)
         {
             <tr onclick="location.href='@Url.Action("Info", "Books", new { id = book.ISBN }, null)'" class="list-item">
@@ -34,7 +34,7 @@
                     @book.Title
                 </td>
                 <td class="list-column list-column-second">
-                    @book.ISBN
+                    @book.Authors
                 </td>
 
             </tr>
@@ -43,16 +43,30 @@
     </table>
 
 </div>
-    @*<ul>
-        <li style="list-style: none; width: 95%;"><span class="list-column">Title</span><span class="list-column">Author</span><span class="list-column">ISBN</span></li>
-        @foreach (var book in Model)
-        {
-            <li class="list-item"  ><span class="list-column">@book.Title</span><span class="list-column">@book.pages</span><span class="list-column">@book.ISBN</span> </li>
 
 
-            @*<li class="list-item">@Html.ActionLink(book.Title, "Info", "Books", new { id = book.ISBN }, null)</li>*@
+<script type="text/javascript">
 
+    function searchFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchBox");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("bookTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
     }
- 
+</script>
 
-    @Html.ActionLink("Create Book", "Add", "Books", new { @class = "btn createBtn" })
+
