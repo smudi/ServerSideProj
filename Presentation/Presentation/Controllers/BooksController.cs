@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Service.Models;
 using Presentation.Models;
+
 namespace Presentation.Controllers
 {
     public class BooksController : Controller
@@ -16,17 +17,17 @@ namespace Presentation.Controllers
         }
         public ActionResult Info(string id)
         {
-            return View(Book.getBook(id));
+            var x = Book.getBook(id);
+            return View(x);
         }
-
+        //---------------EDIT---------------
         public ActionResult Edit(string id)
         {
             EditBookModel obj = new EditBookModel();
             obj.Book = Book.getBook(id);
             obj.Authors = Author.getAuthorList();
             return View(obj);
-        }
-
+        }      
         [HttpPost]
         public RedirectToRouteResult Edit(string Name, string Pages, string publicationYear, string Information, string ISBN, List<string> authors)
         {
@@ -45,7 +46,6 @@ namespace Presentation.Controllers
             TempData["authors"] = authorsList;
             return RedirectToAction("Update");
         }
-
         public RedirectToRouteResult Update()
         {
             List<Author> Authors = new List<Author>();
@@ -63,20 +63,30 @@ namespace Presentation.Controllers
                                         Convert.ToInt16(TempData["pages"]), Authors);
             return RedirectToAction("Index", "Books");
         }
-
+        //---------------ADD---------------
         public ActionResult Add()
         {
             return View(Author.getAuthorList());
         }
 
         [HttpPost]
-        public RedirectToRouteResult Add(Book bookObj)
+        public RedirectToRouteResult Add(Book bookObj, List<int>authorIds)
         {
+            bookObj.Authors = authorIds.Select(id => new Author { Aid = id }).ToList();
+            TempData["book"] = bookObj;
+       
             return RedirectToAction("Store",bookObj);
         }
         public RedirectToRouteResult Store(Book bookObj)
         {
-            Book.Add(bookObj);
+            Book.Add(TempData["book"] as Book);
+            return RedirectToAction("Index", "Books");
+        }
+        //---------------DELETE---------------
+        public RedirectToRouteResult Delete(string id)
+        {
+            var x = Book.getBook(id);
+            Book.Delete(x);
             return RedirectToAction("Index", "Books");
         }
     }

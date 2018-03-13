@@ -13,11 +13,7 @@
         <table>
             @foreach (var book in Model.Books)
             {
-                <tr class="list-item" onclick="location.href='@Url.Action("Info", "Books",new { id = book.ISBN }, null)"> 
-            <td class="list-column list-column-first">
-                    @book.Title
-                </td></tr>
-
+                <li class="list-item">@Html.ActionLink(book.Title == null ? "Unknown" : book.Title, "Info", "Books", new { id = book.ISBN }, null)</li>
             }
         </table>
     </div>
@@ -26,3 +22,4 @@
 <div>
 </div>
 @Html.ActionLink("Edit Author", "Edit", "Authors", new { id = Model.Aid, @class = "btn createBtn" }, null)
+@Html.ActionLink("Delete Author", "Delete", "Authors", new { id = Model.Aid, @class = "btn createBtn" }, null)

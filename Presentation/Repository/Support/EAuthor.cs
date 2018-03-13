@@ -64,7 +64,7 @@ namespace Repository.Support
                 db.SaveChanges();
             }
         }
-        public void Add(AUTHOR authorObj)
+        public void Add(AUTHOR author)
         {
             using (var db = new LibDb())
             {
@@ -72,8 +72,12 @@ namespace Repository.Support
                 {
                     try
                     {
-                        db.AUTHORs.Load();
-                        db.AUTHORs.Add(authorObj);  // Prepare query
+                        foreach (var bo in author.BOOKs)
+                        {
+                            db.BOOKs.Attach(bo);
+                        }
+         
+                        db.AUTHORs.Add(author);  // Prepare query
                         db.SaveChanges();         // Run the query
                         transaction.Commit();   //  Permanent the result, writing to disc and closing transaction
                     }
@@ -83,6 +87,32 @@ namespace Repository.Support
                     }
                 }
             }
+        }
+        public void Delete(AUTHOR author)
+        {
+            using (var db = new LibDb())
+            {
+                using (DbContextTransaction transaction = db.Database.BeginTransaction())
+                {
+                    db.AUTHORs.Attach(author);
+                    foreach (var bo in author.BOOKs)
+                    {
+                        db.BOOKs.Attach(bo);
+                    }
+                    try
+                    {
+                        author.BOOKs.Clear();
+                        db.AUTHORs.Remove(author);
+                        db.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                    }
+                }
+            }
+
         }
     }
 }

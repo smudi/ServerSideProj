@@ -188,12 +188,14 @@
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EditAuthorModel.cs" />
     <Compile Include="Models\EditBookModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewBag\DuplicateMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -208,6 +210,8 @@
     <Content Include="Views\Authors\Edit.cshtml" />
     <Content Include="Views\Books\Add.cshtml" />
     <Content Include="Views\Authors\Add.cshtml" />
+    <Content Include="Views\Users\Register.cshtml" />
+    <Content Include="Scripts\package.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

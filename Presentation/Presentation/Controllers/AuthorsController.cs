@@ -68,13 +68,23 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult Add(Author authorObj)
+        public RedirectToRouteResult Add(Author authorObj, List<string>bookIds)
         {
+            authorObj.Books = bookIds.Select(id => new Book { ISBN = id }).ToList();
+            TempData["author"] = authorObj;
+
             return RedirectToAction("Store", authorObj);
         }
         public RedirectToRouteResult Store(Author authorObj)
         {
-            Author.Add(authorObj);
+            Author.Add(TempData["author"] as Author);
+            return RedirectToAction("Index", "Authors");
+        }
+        //---------------DELETE---------------
+        public RedirectToRouteResult Delete(int id)
+        {
+            var x = Author.getAuthor(id);
+            Author.Delete(x);
             return RedirectToAction("Index", "Authors");
         }
     }

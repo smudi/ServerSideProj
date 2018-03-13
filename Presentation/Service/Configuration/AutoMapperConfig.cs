@@ -19,6 +19,9 @@ namespace Service.Configuration
 
                 cfg.AddProfile(new ToAuthorProfile());
                 cfg.AddProfile(new FromAuthorProfile());
+
+                cfg.AddProfile(new ToUserProfile());
+                cfg.AddProfile(new FromUserProfile());
             });
         }
         public class ToBookProfile : Profile
@@ -48,6 +51,20 @@ namespace Service.Configuration
             public FromAuthorProfile()
             {
                 CreateMap<Author, AUTHOR>();
+            }
+        }
+        public class ToUserProfile : Profile
+        {
+            public ToUserProfile()
+            {
+                CreateMap<User, USER>();
+            }
+        }
+        public class FromUserProfile : Profile
+        {
+            public FromUserProfile()
+            {
+                CreateMap<USER, User>();
             }
         }
     }
