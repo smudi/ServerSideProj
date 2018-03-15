@@ -21,5 +21,8 @@
 </div>
 <div>
 </div>
+@if (Session["user"] != null)
+{
 @Html.ActionLink("Edit Author", "Edit", "Authors", new { id = Model.Aid, @class = "btn createBtn" }, null)
 @Html.ActionLink("Delete Author", "Delete", "Authors", new { id = Model.Aid, @class = "btn createBtn" }, null)
+}

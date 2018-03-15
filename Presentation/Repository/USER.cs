@@ -9,7 +9,6 @@ namespace Repository
     [Table("USER")]
     public partial class USER
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int UserId { get; set; }
 
         [Required]

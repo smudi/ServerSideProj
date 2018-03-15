@@ -11,6 +11,14 @@
                 <li class="navList"><a>@Html.ActionLink("Books", "Index", "Books")</a></li>
                 <li class="navList"><a>@Html.ActionLink("Authors", "Index", "Authors")</a></li>
                 <li class="navList"><a>@Html.ActionLink("Administrators", "Index", "Administrators")</a></li>
+                <li class="navList"><a>@Html.ActionLink("Sign up","Register","Users")</a></li>
+                <li class="navList"><a>@Html.ActionLink("Log in", "Login", "Users")</a></li>
+                @if (Session["user"] != null)
+                {
+                <li class="navList">@Session["userName"].ToString()</li>
+                <li class="navList"><a>@Html.ActionLink("Log out", "Logout", "Users")</a></li>
+                }
+               
             </ul>
         </div>
     </nav>

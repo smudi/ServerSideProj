@@ -33,6 +33,14 @@ namespace Repository.Support
                 return query.ToList();
             }
         }
+        public List<USER> adminList()  //Retrieves all books
+        {
+            using (var db = new LibDb())
+            {
+                var query = db.USERs.Where(x => x.UserRank == 1);
+                return query.ToList();
+            }
+        }
         public void Add(USER user)
         {
             using (var db = new LibDb())
@@ -57,6 +65,16 @@ namespace Repository.Support
             using (var db = new LibDb())
             {
                 return db.USERs.Where(b => b.UserName == name).FirstOrDefault();
+            }
+        }
+        public void Update(USER user)
+        {
+
+            using (var db = new LibDb())
+            {
+                db.USERs.Attach(user);
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
             }
         }
     }
