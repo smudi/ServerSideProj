@@ -146,7 +146,7 @@ textarea {
     display: table;
     width: 98%;
     border-bottom: 1px groove;
-    text-align: center;
+    text-align: left;
     font-variant-caps: small-caps; 
 }
 .list-item:hover{
@@ -195,7 +195,7 @@ form {
 .list-column {
     
     border-right: 1px groove;
-    text-align: center;
+    text-align: left;
     display: table-cell;
     overflow: hidden;
     /*white-space: nowrap;*/

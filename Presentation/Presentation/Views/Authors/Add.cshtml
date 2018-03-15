@@ -12,7 +12,7 @@
         <div><label class="editLabel">Last name:</label> @Html.TextBox("LastName","")</div>
         <div><label class="editLabel">Birth year:</label> @Html.TextBox("BirthYear", "")</div>
 
-        <select size="10" name="bookIds" multiple>
+        <select size="10" name="bookIds" multiple class="selectpicker" data-live-search="true" >
             @foreach (var book in Model)
             {
                 <option value="@book.ISBN">@book.Title</option>

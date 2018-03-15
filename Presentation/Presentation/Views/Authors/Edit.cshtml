@@ -10,13 +10,14 @@
         <div><label class="editLabel">First name:</label><input name="FirstName" type="text" value="@Model.Author.FirstName" /><br /><label id="valFirstName" class="valLabel" style="visibility:collapse;">* First name is required</label></div>
         <div><label class="editLabel">Last name:</label><input name="LastName" type="text" value="@Model.Author.LastName" /><br /><label id="valLastName" class="valLabel" style="visibility:collapse;">* Last name is required</label></div>
         <div><label class="editLabel">Birth year:</label><input name="BirthYear" type="text" value="@Model.Author.BirthYear" onkeypress="validate(evt)" /><br /><label id="valBirthYear" class="valLabel" style="visibility:collapse;">* Birth year is required</label></div>
-
-        <select size="10" name="books" multiple>
-            @foreach (var book in Model.Books)
-            {
-                <option @if (@Model.Author.Books.FirstOrDefault(a => a.ISBN == book.ISBN) != null) { <text> Selected</text> } value="@book.ISBN">@book.Title</option>
-            }
-        </select>
+        <div>
+            <select name="books" multiple class="selectpicker" data-live-search="true">
+                @foreach (var book in Model.Books)
+                {
+                    <option @if (@Model.Author.Books.FirstOrDefault(a => a.ISBN == book.ISBN) != null) { <text> Selected</text> } value="@book.ISBN">@book.Title</option>
+                }
+            </select>
+        </div>
         <div style="height: 30px;"><input type="submit" value="Save" formmethod="post" class="btn saveBtn" style="float:right;" /></div>
     </form>
 

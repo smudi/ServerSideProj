@@ -16,11 +16,7 @@
         <ul>
             @foreach (var author in Model.Authors)
             {
-<<<<<<< HEAD
-                <li class="list-item">@Html.ActionLink(author.FirstName, "Info", "Authors", new { id = author.Aid }, null)</li>
-=======
                 <li class="list-item">@Html.ActionLink(author.FirstName == null ? "Unknown" : author.FirstName, "Info", "Authors", new { id = author.Aid }, null)</li>
->>>>>>> eb01f8e3dc4207f22a8d39a1a7ad33457c7331a6
 
             }
         </ul>
