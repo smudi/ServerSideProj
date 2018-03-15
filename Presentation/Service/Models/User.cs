@@ -27,7 +27,8 @@ namespace Service.Models
 
         public int UserRank { get; set; }
 
-        
+        public string SaltNum { get; set; }
+
         static private EUser _eUser = new EUser();
 
         static public User getUser(int id)

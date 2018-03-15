@@ -20,5 +20,8 @@ namespace Repository
         public string HashPassWord { get; set; }
 
         public int UserRank { get; set; }
+
+        [StringLength(255)]
+        public string SaltNum { get; set; }
     }
 }

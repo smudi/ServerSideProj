@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace Repository.Support
 {
@@ -22,8 +23,9 @@ namespace Repository.Support
         {
             using (var db = new LibDb())
             {
-                return db.USERs.Where(b => b.UserId == id).FirstOrDefault(); 
+                return db.USERs.Where(b => b.UserId == id).FirstOrDefault();
             }
+
         }
         public List<USER> List()  //Retrieves all books
         {

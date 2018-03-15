@@ -31,6 +31,10 @@ namespace Repository
             modelBuilder.Entity<USER>()
                 .Property(e => e.HashPassWord)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<USER>()
+                .Property(e => e.SaltNum)
+                .IsUnicode(false);
         }
     }
 }
