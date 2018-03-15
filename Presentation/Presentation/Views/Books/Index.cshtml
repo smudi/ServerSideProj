@@ -10,12 +10,17 @@
     <p>There are no books</p>
 }
 
-<div class="search-div">
-    <input type="text" id="searchBox" onkeyup="searchFunction()" placeholder="Filter books"/>
-    <div style="float:right; display:flex;">
-        @Html.ActionLink("Create Book", "Add", "Books", new { @class = "btn createBtn" })
+
+    <div class="search-div">
+        <input type="text" id="searchBox" onkeyup="searchFunction()" placeholder="Filter books" />
+        @if (Session["user"] != null)
+        {
+        <div style="float:right; display:flex;">
+            @Html.ActionLink("Create Book", "Add", "Books", new { @class = "btn createBtn" })
+        </div>
+        }
     </div>
-</div>
+
 
 
 <div class="list-group">

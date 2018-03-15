@@ -1,27 +1,14 @@
-﻿@*@model IEnumerable<Repository.ADMINISTRATOR>*@
+﻿@model IEnumerable<Service.Models.User>
 @{ 
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
   
-
-
 <h2>ADMINISTRATORS</h2>
 
-<div class="input-group">
-    @using (Html.BeginForm())
-    {
-        @Html.TextBox("searchBox")
-        <a href="#" class="btn searchBtn">Search</a>
-        @*<input type="submit" value="search"/>*@
-
-    }
-</div>
-
 <ul>
-    @*@foreach (var admin in Model)
+    @foreach (var admin in Model)
     {
-        <li class="list-item">@Html.ActionLink(admin.Name, "Info", "Administrators", new { id = admin.Id }, null)</li>
-    }*@
+        <li class="list-item">@admin.UserName</li>
+    }
 </ul>
-@*@Html.ActionLink("Create Administrator", "Create", "Administrators", new { @class = "btn createBtn" })*@

@@ -51,5 +51,13 @@ namespace Service.Models
             User user = Mapper.Map<User>(tempUser);
             return user;
         }
+        static public List<User> getAdministrators()
+        {
+            return Mapper.Map<List<USER>, List<User>>(_eUser.adminList());
+        }
+        static public void Update(User user)
+        {
+            _eUser.Update(Mapper.Map<USER>(user));
+        }
     }
 }

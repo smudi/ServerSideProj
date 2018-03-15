@@ -283,13 +283,13 @@
     <Content Include="Views\Administrators\Index.cshtml" />
     <Content Include="Views\Books\Info.cshtml" />
     <Content Include="Views\Authors\Info.cshtml" />
-    <Content Include="Views\Administrators\Info.cshtml" />
     <Content Include="Views\Books\Edit.cshtml" />
     <Content Include="Views\Authors\Edit.cshtml" />
     <Content Include="Views\Books\Add.cshtml" />
     <Content Include="Views\Authors\Add.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
     <Content Include="Scripts\package.json" />
+    <Content Include="Views\Users\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -31,7 +31,7 @@ center a {
 }
 
 
-nav {
+.navigationBar {
     display: flex;
     background: #961b81;
 }
@@ -51,6 +51,7 @@ nav {
         /*text-decoration-line: underline;*/
         text-shadow: none;
         color: lightblue;
+        background-color: none !important;
     }
 .btn{
     border-radius: 3px;
