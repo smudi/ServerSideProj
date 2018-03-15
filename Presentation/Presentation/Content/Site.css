@@ -31,7 +31,7 @@ center a {
 }
 
 
-nav {
+.navigationBar {
     display: flex;
     background: #961b81;
 }
@@ -51,6 +51,7 @@ nav {
         /*text-decoration-line: underline;*/
         text-shadow: none;
         color: lightblue;
+        background-color: none !important;
     }
 .btn{
     border-radius: 3px;
@@ -146,7 +147,7 @@ textarea {
     display: table;
     width: 98%;
     border-bottom: 1px groove;
-    text-align: center;
+    text-align: left;
     font-variant-caps: small-caps; 
 }
 .list-item:hover{
@@ -195,7 +196,7 @@ form {
 .list-column {
     
     border-right: 1px groove;
-    text-align: center;
+    text-align: left;
     display: table-cell;
     overflow: hidden;
     /*white-space: nowrap;*/

@@ -13,7 +13,7 @@
         <table>
             @foreach (var book in Model.Books)
             {
-                <li class="list-item">@Html.ActionLink(book.Title == null ? "Unknown" : book.Title, "Info", "Books", new { id = book.ISBN }, null)</li>
+                <tr class="list-item">@Html.ActionLink(book.Title == null ? "Unknown" : book.Title, "Info", "Books", new { id = book.ISBN }, null)</tr>
             }
         </table>
     </div>

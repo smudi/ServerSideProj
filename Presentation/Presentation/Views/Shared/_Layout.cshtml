@@ -1,22 +1,41 @@
 ﻿<!DOCTYPE html>
+
 <html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
+
 <head>
     @Styles.Render("~/Content/Site.css")
+
 </head>
 <body>
     <center><a class="mainTitle">@Html.ActionLink("Jönköping library", "Index", "Home")</a></center>
     <nav>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="navList"><a>@Html.ActionLink("Books", "Index", "Books")</a></li>
-                <li class="navList"><a>@Html.ActionLink("Authors", "Index", "Authors")</a></li>
-                <li class="navList"><a>@Html.ActionLink("Administrators", "Index", "Administrators")</a></li>
-                <li class="navList"><a>@Html.ActionLink("Sign up","Register","Users")</a></li>
-                <li class="navList"><a>@Html.ActionLink("Log in", "Login", "Users")</a></li>
+            <ul class="navigationBar">
+                <li class="navList">@Html.ActionLink("Books", "Index", "Books")</li>
+                <li class="navList">@Html.ActionLink("Authors", "Index", "Authors")</li>
+                <li class="navList">@Html.ActionLink("Administrators", "Index", "Administrators")</li>
+                <li class="navList">@Html.ActionLink("Sign up","Register","Users")</li>
+                <li class="navList">@Html.ActionLink("Log in", "Login", "Users")</li>
                 @if (Session["user"] != null)
                 {
                 <li class="navList">@Session["userName"].ToString()</li>
-                <li class="navList"><a>@Html.ActionLink("Log out", "Logout", "Users")</a></li>
+                <li class="navList">@Html.ActionLink("Log out", "Logout", "Users")</li>
                 }
                
             </ul>
@@ -25,3 +44,4 @@
     @RenderBody()
 </body>
 </html>
+

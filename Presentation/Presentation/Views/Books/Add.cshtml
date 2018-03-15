@@ -12,29 +12,14 @@
         <div><label class="editLabel">Pages:</label><input type="text" name="pages" id="pagesBox" onkeypress="validate(event)" /><br /><label id="valPages" class="valLabel" style="visibility:collapse;">* Number of pages is required</label></div>
         <div><label class="editLabel">Publication Year:</label><input type="text" name="PublicationYear" onkeypress="validate(event)" /><br /><label id="valYear" class="valLabel" style="visibility:collapse;">* Publiction year is required</label></div>
         <div><label class="editLabel">Information:</label><input type="text" name="publicationinfo" /> <br /><label id="valInfo" class="valLabel" style="visibility:collapse;">* Information is required</label></div>
-        <select size="10" name="authorIds" multiple>
+        <select size="10" name="authors" multiple class="selectpicker" data-live-search="true" >
             @foreach (var author in Model)
             {
-                <option value="@author.Aid">@author.FirstName</option>
+                <option value="@author.Aid">@author.FirstName @author.LastName</option>
             }
         </select>
         <div style="height: 30px;"><input type="submit" value="Add" formmethod="post" class="btn saveBtn" style="float:right;" /></div>
     </form>
-    @*<form method="post" action="/Books/Add">
-                <div><label class="editLabel">ISBN:</label> @Html.TextBox("ISBN","")</div>
-                <div><label class="editLabel">Title:</label> @Html.TextBox("Title","")</div>
-                <div><label class="editLabel">Pages:</label> @Html.TextBox("pages","")</div>
-                <div><label class="editLabel">Publication Year:</label> @Html.TextBox("PublicationYear", "")</div>
-                <div><label class="editLabel">Information:</label> @Html.TextArea("publicationinfo", "")</div>
-                <select size="10" name="authorIds" multiple>
-                    @foreach (var author in Model)
-        >>>>>>> eb01f8e3dc4207f22a8d39a1a7ad33457c7331a6
-                    {
-                        <option value="@author.Aid">@author.FirstName</option>
-                }
-                    </select>
-                    <div style="height: 30px;"><input type="submit" value="Add" formmethod="post" class="btn saveBtn" style="float:right;" /></div>
-                </form>*@
 
 </div>
 <script type="text/javascript">

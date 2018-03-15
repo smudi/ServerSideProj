@@ -6,15 +6,17 @@
 
 <h2>Authors</h2>
 
-@if (Session["user"] != null)
-{
+
 <div class="search-div">
     <input type="text" id="searchBox" onkeyup="searchFunction()" placeholder="Filter authors" />
-    <div style="float:right; display:flex;">
-        @Html.ActionLink("Create Author", "Add", "Authors", new { @class = "btn createBtn" })
-    </div>
+    @if (Session["user"] != null)
+    {
+        <div style="float:right; display:flex;">
+            @Html.ActionLink("Create Author", "Add", "Authors", new { @class = "btn createBtn" })
+        </div>
+    }
 </div>
-}
+
 
 <div class="list-group">
     <table style="width: 100%; height: 80%;" id="authorTable">
