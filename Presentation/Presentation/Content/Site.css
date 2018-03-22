@@ -17,74 +17,87 @@ select,
 textarea {
     max-width: 280px;
 }
+
 center {
     background: rgba(38,38,38,1);
     font-variant-caps: all-small-caps;
     color: #fff;
 }
 
-center a {
-    color: #fff;
-    font-size: 2em;
-    text-decoration-line: none;
-    margin-bottom:20px;
-}
+    center a {
+        color: #fff;
+        font-size: 2em;
+        text-decoration-line: none;
+        margin-bottom: 20px;
+    }
 
 
 .navigationBar {
     display: flex;
     background: #961b81;
 }
-.navList {
+
+.navigList {
     display: inline;
     width: 20%;
     padding: 40px;
     font-variant-caps: all-small-caps;
 }
-.navList a {
+
+    .navigList a {
         color: #fff;
         text-decoration-line: none;
         text-shadow: 10px 10px 10px #000;
         font-size: 1.2em;
-}
-.navList a:hover {
-        /*text-decoration-line: underline;*/
-        text-shadow: none;
-        color: lightblue;
-        background-color: none !important;
     }
-.btn{
+
+        .navigList a:hover {
+            /*text-decoration-line: underline;*/
+            text-shadow: none;
+            color: lightblue;
+            background-color: none !important;
+        }
+
+.btn {
     border-radius: 3px;
     color: #fff;
-    text-decoration-line:none;
+    text-decoration-line: none;
     padding: 5px;
     box-shadow: 2px 2px 2px #333;
 }
-.btn:hover{
-    box-shadow: none;
-    cursor: pointer;
-}
-.saveBtn{
+
+    .btn:hover {
+        box-shadow: none;
+        cursor: pointer;
+    }
+
+.saveBtn {
     background: seagreen;
 }
-.cancelBtn{
+
+.cancelBtn {
     background: orangered;
 }
-.searchBtn{
+
+.searchBtn {
     background-color: dodgerblue;
 }
-.createBtn{
+
+.createBtn {
     background-color: rebeccapurple;
 }
-.input{
+
+.input {
     border-radius: 3px;
     box-shadow: 2px 2px 2px #555;
 }
+
 #searchBox {
     border-radius: 3px;
     /*box-shadow: 1px 1px 1px #555;*/
     height: 30px;
 }
+
 input {
     border-radius: 3px;
     box-shadow: 1px 1px 1px #333 inset;
@@ -93,18 +106,22 @@ input {
     width: 200px;
     margin-bottom: 5px;
 }
+
     input:active {
         box-shadow: 1px -1px 1px #333 inset;
     }
+
     input:focus {
         box-shadow: 1px -1px 1px #333 inset;
     }
-h2{
+
+h2 {
     text-align: center;
     border-bottom: 1px groove;
     font-variant-caps: small-caps;
 }
-.editLabel{
+
+.editLabel {
     font-size: 1.2em;
     color: #fff;
     width: 100px;
@@ -112,6 +129,7 @@ h2{
     margin-right: 20px;
     font-variant-caps: all-small-caps;
 }
+
 textarea {
     border-radius: 3px;
     border: 1px solid #666;
@@ -119,6 +137,7 @@ textarea {
     margin-bottom: 5px;
     box-shadow: 1px 1px 1px #333;
 }
+
 .list-header {
     height: 50px;
     color: black;
@@ -130,7 +149,8 @@ textarea {
     list-style: none;
     display: table;
     width: 98%;
-} 
+}
+
 .list-item {
     height: 50px;
     /*background: #fff;*/
@@ -148,23 +168,26 @@ textarea {
     width: 98%;
     border-bottom: 1px groove;
     text-align: left;
-    font-variant-caps: small-caps; 
+    font-variant-caps: small-caps;
 }
-.list-item:hover{
-    background: #e0e0e0;
-    box-shadow: none;
-    cursor: pointer;
-}
-.list-item a{
-    color: black;
-    text-decoration-line: none;
-    float: left;
-}
+
+    .list-item:hover {
+        background: #e0e0e0;
+        box-shadow: none;
+        cursor: pointer;
+    }
+
+    .list-item a {
+        color: black;
+        text-decoration-line: none;
+        float: left;
+    }
+
 form {
     width: -moz-fit-content;
     padding: 5px;
- 
 }
+
 .form-div {
     width: -moz-fit-content;
     margin-left: auto;
@@ -173,6 +196,7 @@ form {
     border-radius: 3px;
     box-shadow: 1px 1px 1px grey, 1px 1px 1px grey, 1px 1px 1px grey;
 }
+
 .search-div {
     /*width: -moz-fit-content;
     margin-left: auto;
@@ -181,6 +205,7 @@ form {
     margin-left: auto;
     margin-right: auto;
 }
+
 .info-div {
     width: -moz-fit-content;
     margin-left: auto;
@@ -189,12 +214,13 @@ form {
     /*background: #E0E0E0;*/
     border-radius: 3px;
 }
-.info-title{
+
+.info-title {
     border-bottom: 1px groove;
     text-align: center;
 }
+
 .list-column {
-    
     border-right: 1px groove;
     text-align: left;
     display: table-cell;
@@ -202,19 +228,24 @@ form {
     /*white-space: nowrap;*/
     text-overflow: ellipsis;
 }
+
 .list-column-second {
     width: 10%;
 }
+
 .list-column-first {
     width: 25%;
 }
-.valLabel{
+
+.valLabel {
     color: red;
-    font-variant-caps:small-caps;
-}
-p{
     font-variant-caps: small-caps;
 }
+
+p {
+    font-variant-caps: small-caps;
+}
+
 .list-group {
     height: 550px;
     overflow: auto;

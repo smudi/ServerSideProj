@@ -27,15 +27,15 @@
     <nav>
         <div class="collapse navbar-collapse">
             <ul class="navigationBar">
-                <li class="navList">@Html.ActionLink("Books", "Index", "Books")</li>
-                <li class="navList">@Html.ActionLink("Authors", "Index", "Authors")</li>
-                <li class="navList">@Html.ActionLink("Administrators", "Index", "Administrators")</li>
-                <li class="navList">@Html.ActionLink("Sign up","Register","Users")</li>
-                <li class="navList">@Html.ActionLink("Log in", "Login", "Users")</li>
+                <li class="navigList">@Html.ActionLink("Books", "Index", "Books")</li>
+                <li class="navigList">@Html.ActionLink("Authors", "Index", "Authors")</li>
+                <li class="navigList">@Html.ActionLink("Administrators", "Index", "Administrators")</li>
+                <li class="navigList">@Html.ActionLink("Sign up","Register","Users")</li>
+                <li class="navigList">@Html.ActionLink("Log in", "Login", "Users")</li>
                 @if (Session["user"] != null)
                 {
-                <li class="navList">@Session["userName"].ToString()</li>
-                <li class="navList">@Html.ActionLink("Log out", "Logout", "Users")</li>
+                <li class="navigList">@Session["userName"].ToString()</li>
+                <li class="navigList">@Html.ActionLink("Log out", "Logout", "Users")</li>
                 }
                
             </ul>

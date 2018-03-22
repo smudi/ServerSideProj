@@ -41,7 +41,7 @@ namespace Repository.Support
 
             string query = "UPDATE BOOK SET Title='" + bookObj.Title + "', ISBN='" + bookObj.ISBN + "', Pages =" + Convert.ToString(bookObj.pages) + ", PublicationYear ='" + bookObj.PublicationYear +
                 "', publicationinfo = '" + bookObj.publicationinfo + "'" + "WHERE SignId =" + Convert.ToString(bookObj.SignId) + ";";
-            
+
             int noOfRows = 0;
             string _connectionString = DataSource.getConnectionString("projectmanager");
             SqlConnection con = new SqlConnection(_connectionString);
@@ -87,8 +87,8 @@ namespace Repository.Support
             //    }
 
             //    db.SaveChanges();
-            }
         }
+
 
         public void Add(BOOK bookObj)
         {
@@ -98,7 +98,7 @@ namespace Repository.Support
                 {
                     try
                     {
-                        foreach(var au in bookObj.AUTHORs)
+                        foreach (var au in bookObj.AUTHORs)
                         {
                             db.AUTHORs.Attach(au);
                         }
