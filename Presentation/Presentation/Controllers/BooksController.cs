@@ -9,10 +9,9 @@ using Presentation.Models;
 namespace Presentation.Controllers
 {
     public class BooksController : Controller
-    {     
-        // GET: Books
+    {
         public ActionResult Index()
-        {       
+        {
             return View(Book.getBookList());
         }
         public ActionResult Info(string id)
@@ -20,14 +19,17 @@ namespace Presentation.Controllers
             var x = Book.getBook(id);
             return View(x);
         }
-        //---------------EDIT---------------
+        //--------------------------------------------------------EDIT--------------------------------------------------------
         public ActionResult Edit(string id)
         {
+            if (Session["user"] == null)
+                return RedirectToAction("Index");
+
             EditBookModel obj = new EditBookModel();
             obj.Book = Book.getBook(id);
             obj.Authors = Author.getAuthorList();
             return View(obj);
-        }      
+        }
         [HttpPost]
         public RedirectToRouteResult Edit(string Name, string Pages, string publicationYear, string Information, string ISBN, List<string> authors)
         {
@@ -38,18 +40,23 @@ namespace Presentation.Controllers
             TempData["info"] = Information == "" ? "" : Information;
             TempData["isbn"] = ISBN;
 
-            List<string> authorsList = new List<string>();
-            foreach (var au in authors)
+            if (authors == null) TempData["authors"] = null;
+            else
             {
-                authorsList.Add(au);
+                List<string> authorsList = new List<string>();
+                foreach (var au in authors)
+                {
+                    authorsList.Add(au);
+                }
+                TempData["authors"] = authorsList;
             }
-            TempData["authors"] = authorsList;
+
             return RedirectToAction("Update");
         }
         public RedirectToRouteResult Update()
         {
             List<Author> Authors = new List<Author>();
-            foreach(var au in TempData["authors"] as List<string>)
+            foreach (var au in TempData["authors"] as List<string>)
             {
                 Authors.Add(new Author
                 {
@@ -57,34 +64,43 @@ namespace Presentation.Controllers
                 });
 
             }
-      
+
             Book.Update(Convert.ToString(TempData["title"]), Convert.ToString(TempData["isbn"]),
                                         Convert.ToString(TempData["pubYear"]), Convert.ToString(TempData["info"]),
                                         Convert.ToInt16(TempData["pages"]), Authors);
             return RedirectToAction("Index", "Books");
         }
-        //---------------ADD---------------
+        //--------------------------------------------------------ADD--------------------------------------------------------
         public ActionResult Add()
         {
+            if (Session["user"] == null)
+                return RedirectToAction("Index");
+
             return View(Author.getAuthorList());
         }
 
         [HttpPost]
-        public RedirectToRouteResult Add(Book bookObj, List<int>authorIds)
+        public RedirectToRouteResult Add(Book bookObj, List<int> authorIds)
         {
-            bookObj.Authors = authorIds.Select(id => new Author { Aid = id }).ToList();
+            if (authorIds != null)
+                bookObj.Authors = authorIds.Select(id => new Author { Aid = id }).ToList();
+
             TempData["book"] = bookObj;
-       
-            return RedirectToAction("Store",bookObj);
+
+            return RedirectToAction("Store", bookObj);
         }
         public RedirectToRouteResult Store(Book bookObj)
         {
             Book.Add(TempData["book"] as Book);
             return RedirectToAction("Index", "Books");
         }
-        //---------------DELETE---------------
+        [HttpPost]
+        //--------------------------------------------------------DELETE--------------------------------------------------------
         public RedirectToRouteResult Delete(string id)
         {
+            if (Session["user"] == null)
+                return RedirectToAction("Index");
+
             var x = Book.getBook(id);
             Book.Delete(x);
             return RedirectToAction("Index", "Books");

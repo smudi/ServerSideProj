@@ -10,30 +10,37 @@ namespace Presentation.Controllers
 {
     public class UsersController : Controller
     {
-        // GET: Users
+        //--------------------------------------------------------ADD--------------------------------------------------------
         public ActionResult Register()
         {
+            if (Session["user"] == null || (int)Session["userRank"] == 0) //if not admin or not logged in you cant add new user
+                return RedirectToAction("Index");
+
             User user = new User();
             return View(user);
         }
+
         [HttpPost]
-        public ActionResult Register(Service.Models.User user)
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(Service.Models.User user, bool isAdmin)
         {
-          if(Service.Models.User.getUserByName(user.UserName) != null)
+            if (Service.Models.User.getUserByName(user.UserName) != null)
             {
                 ViewBag.DuplicateMessage = "username already exists";
                 return View(user);
-            }        
-          if(user.HashPassWord != user.ConfirmPassWord)
+            }
+            if (user.HashPassWord != user.ConfirmPassWord)
             {
                 ViewBag.ComparePassword = "Password does not match";
                 return View(user);
             }
-          //Hash password
+            //Create hash password
             user.SaltNum = Crypto.GenerateSalt();
             user.HashPassWord = Crypto.Hash(user.SaltNum + user.HashPassWord);
 
-            user.UserRank = 0;
+            if (isAdmin) user.UserRank = 1;
+            else user.UserRank = 0;
+
             Service.Models.User.Add(user);
             return RedirectToAction("Index", "Home");
         }
@@ -43,14 +50,12 @@ namespace Presentation.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Authorize(Service.Models.User user)
-        {
-            // Get salt
-            var salt = Service.Models.User.getUserByName(user.UserName).SaltNum; 
-
+        {            
             //Check if real password is same as the paramenter value
             if (Service.Models.User.getUserByName(user.UserName) == null ||
-                Service.Models.User.getUserByName(user.UserName).HashPassWord != Crypto.SHA256(salt + user.HashPassWord))
+                Service.Models.User.getUserByName(user.UserName).HashPassWord != Crypto.SHA256(Service.Models.User.getUserByName(user.UserName).SaltNum + user.HashPassWord))
             {
                 ViewBag.ErrorMessage = "username or password is wrong";
                 return View("Login");
@@ -58,8 +63,11 @@ namespace Presentation.Controllers
             //User is logged in, set session
             Session["user"] = Service.Models.User.getUserByName(user.UserName);
             Session["userName"] = Service.Models.User.getUserByName(user.UserName).UserName;
+            Session["userRank"] = Service.Models.User.getUserByName(user.UserName).UserRank;
+
             return RedirectToAction("Index", "Home");
         }
+        //--------------------------------------------------------LOGOUT--------------------------------------------------------
         public ActionResult Logout(Service.Models.User user)
         {
             Session.Clear();

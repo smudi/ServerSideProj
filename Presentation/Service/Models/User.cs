@@ -60,5 +60,9 @@ namespace Service.Models
         {
             _eUser.Update(Mapper.Map<USER>(user));
         }
+        static public void Delete(User user)
+        {
+            _eUser.Delete(Mapper.Map<USER>(user));
+        }
     }
 }

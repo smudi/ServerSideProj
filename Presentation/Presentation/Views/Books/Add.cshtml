@@ -12,7 +12,7 @@
         <div><label class="editLabel">Pages:</label><input type="text" name="pages" id="pagesBox" onkeypress="validate(event)" /><br /><label id="valPages" class="valLabel" style="visibility:collapse;">* Number of pages is required</label></div>
         <div><label class="editLabel">Publication Year:</label><input type="text" name="PublicationYear" onkeypress="validate(event)" /><br /><label id="valYear" class="valLabel" style="visibility:collapse;">* Publiction year is required</label></div>
         <div><label class="editLabel">Information:</label><input type="text" name="publicationinfo" /> <br /><label id="valInfo" class="valLabel" style="visibility:collapse;">* Information is required</label></div>
-        <select size="10" name="authors" multiple class="selectpicker" data-live-search="true" >
+        <select size="10" name="authorIds" multiple class="selectpicker" data-live-search="true" >
             @foreach (var author in Model)
             {
                 <option value="@author.Aid">@author.FirstName @author.LastName</option>

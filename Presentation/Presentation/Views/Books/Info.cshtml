@@ -25,6 +25,9 @@
 @if (Session["user"] != null)
 {
     @Html.ActionLink("Edit Book", "Edit", "Books", new { id = Model.ISBN, @class = "btn createBtn" }, null)
-    @Html.ActionLink("Delete Book", "Delete", "Books", new { id = Model.ISBN, @class = "btn createBtn" }, null)
+    <form method="post" action="/Books/Delete?id=@Model.ISBN"> 
+        <div style="height: 30px;"><input type="submit" value="Delete book" class="btn saveBtn" style="float:right;" /></div>
+    </form>
+    @*@Html.ActionLink("Delete Book", "Delete", "Books", new { id = Model.ISBN, @class = "btn createBtn" }, null)*@
 }
 

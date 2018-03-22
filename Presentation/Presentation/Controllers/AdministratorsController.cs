@@ -19,7 +19,7 @@ namespace Presentation.Controllers
             var x = Book.getBook(id);
             return View(x);
         }
-        //---------------EDIT---------------
+        //--------------------------------------------------------EDIT--------------------------------------------------------
         public ActionResult Edit(int id)
         {
             return View(Service.Models.User.getUser(id));
@@ -34,6 +34,18 @@ namespace Presentation.Controllers
         {
             Service.Models.User.Update(TempData["admin"] as Service.Models.User);
             return RedirectToAction("Index", "Users");
+        }
+        //--------------------------------------------------------DELETE--------------------------------------------------------
+        [HttpPost]
+        public RedirectToRouteResult Delete(int id)
+        {
+            if (Session["user"] == null)
+                return RedirectToAction("Index");
+
+            var x = Service.Models.User.getUser(id);
+            
+            Service.Models.User.Delete(x);
+            return RedirectToAction("Index");
         }
     }
 }

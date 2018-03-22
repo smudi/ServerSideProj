@@ -5,32 +5,32 @@
 }
 <h2>BOOKS</h2>
 
-@if (!Model.Any())
+@if (Model == null)
 {
     <p>There are no books</p>
 }
 
 
-    <div class="search-div">
-        <input type="text" id="searchBox" onkeyup="searchFunction()" placeholder="Filter books" />
-        @if (Session["user"] != null)
-        {
+<div class="search-div">
+    <input type="text" id="searchBox" onkeyup="searchFunction()" placeholder="Filter books" />
+    @if (Session["user"] != null)
+    {
         <div style="float:right; display:flex;">
             @Html.ActionLink("Create Book", "Add", "Books", new { @class = "btn createBtn" })
         </div>
-        }
-    </div>
+    }
+</div>
 
 
 
 <div class="list-group">
     <table style="width:100%;" id="bookTable">
         <thead>
-        <tr class="list-header">
-            <th class="list-column list-column-first">TITLE</th>
-            <th class="list-column list-column-second">AUTHORS</th>
+            <tr class="list-header">
+                <th class="list-column list-column-first">TITLE</th>
+                <th class="list-column list-column-second">AUTHORS</th>
 
-        </tr>
+            </tr>
         </thead>
         @foreach (var book in Model)
         {
