@@ -24,6 +24,11 @@ namespace Presentation.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(Service.Models.User user, bool isAdmin)
         {
+            if (user.UserName == null || user.HashPassWord == null || user.ConfirmPassWord == null)
+            {
+                ViewBag.DuplicateMessage = "All fields must be filled in";
+                return View();
+            }
             if (Service.Models.User.getUserByName(user.UserName) != null)
             {
                 ViewBag.DuplicateMessage = "username already exists";
