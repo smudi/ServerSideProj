@@ -25,7 +25,7 @@
 <body>
     <center><a class="mainTitle">@Html.ActionLink("Jönköping library", "Index", "Home")</a></center>
     <nav>
-        <div class="collapse navbar-collapse">
+        <div class="navigBar">
             <ul class="navigationBar">
                 <li class="navigList">@Html.ActionLink("Books", "Index", "Books")</li>
                 <li class="navigList">@Html.ActionLink("Authors", "Index", "Authors")</li>
@@ -37,7 +37,7 @@
                      {
                          <li class="navigList">@Html.ActionLink("Add user", "Register", "Users")</li>
                      }
-                <li class="navigList">@Session["userName"].ToString()</li>
+                <li class="navigList" style="color: cadetblue; font-size: 22px;">@Session["userName"].ToString()</li>
                 <li class="navigList">@Html.ActionLink("Log out", "Logout", "Users")</li>
                 }
                 else { <li class="navigList">@Html.ActionLink("Log in", "Login", "Users")</li> }                         

@@ -4,24 +4,24 @@
 }
 
 <h2>Log in</h2>
-<div class="info-div">
+<div class="info-div" style="width: fit-content; text-align: center;">
 
     @using (Html.BeginForm("Authorize", "Users", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
+        <div class="form-horizontal" >
             <div class="">
-                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="">
+                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "" })<br/>
+                <div style="display: inline-flex;">
                     @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "Username" } })
                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="">
-                @Html.LabelFor(model => model.HashPassWord, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="">
+            <div >
+                @Html.LabelFor(model => model.HashPassWord, htmlAttributes: new { @class = "" })<br />
+                <div style="display: inline-flex;">
                     @Html.EditorFor(model => model.HashPassWord, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
                     @Html.ValidationMessageFor(model => model.HashPassWord, "", new { @class = "text-danger" })
                 </div>
