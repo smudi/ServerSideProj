@@ -8,7 +8,7 @@ namespace Repository
     public partial class LibDb : DbContext
     {
         public LibDb()
-            : base("name=LibDb")
+            : base("name=DbLib")
         {
         }
 

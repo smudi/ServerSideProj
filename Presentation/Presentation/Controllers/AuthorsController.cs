@@ -21,6 +21,7 @@ namespace Presentation.Controllers
             return View(Author.getAuthor(id));
         }
 
+
         //--------------------------------------------------------EDIT--------------------------------------------------------
         public ActionResult Edit(int id)
         {
@@ -32,7 +33,9 @@ namespace Presentation.Controllers
             obj.Books = Book.getBookList();
             return View(obj);
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public RedirectToRouteResult Edit(string FirstName, string LastName, string BirthYear, string Aid, List<string> books)
         {
             TempData["firstName"] = FirstName;
@@ -71,6 +74,7 @@ namespace Presentation.Controllers
                                          Books);
             return RedirectToAction("Index", "Authors");
         }
+
         //--------------------------------------------------------ADD--------------------------------------------------------
         public ActionResult Add()
         {
@@ -80,7 +84,9 @@ namespace Presentation.Controllers
             return View(Book.getBookList());
         }
 
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public RedirectToRouteResult Add(Author authorObj, List<string> bookIds)
         {
             if (bookIds != null)

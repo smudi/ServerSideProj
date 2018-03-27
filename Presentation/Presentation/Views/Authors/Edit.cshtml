@@ -4,9 +4,14 @@
 }
 
 <h2>Edit Author</h2>
+
+
 <div class="form-div">
 
     <form method="post" name="editAuthor" action="/Authors/Edit?Aid=@Model.Author.Aid" onsubmit="return validateForm()">
+
+        @Html.AntiForgeryToken()
+
         <div><label class="editLabel">First name:</label><input name="FirstName" type="text" class="form-control" value="@Model.Author.FirstName" /><br /><label id="valFirstName" class="valLabel" style="visibility:collapse;">* First name is required</label></div>
         <div><label class="editLabel">Last name:</label><input name="LastName" type="text" class="form-control" value="@Model.Author.LastName" /><br /><label id="valLastName" class="valLabel" style="visibility:collapse;">* Last name is required</label></div>
         <div><label class="editLabel">Birth year:</label><input name="BirthYear" type="text" class="form-control" value="@Model.Author.BirthYear" onkeypress="validate(evt)" /><br /><label id="valBirthYear" class="valLabel" style="visibility:collapse;">* Birth year is required</label></div>

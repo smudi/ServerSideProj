@@ -30,7 +30,9 @@ namespace Presentation.Controllers
             obj.Authors = Author.getAuthorList();
             return View(obj);
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public RedirectToRouteResult Edit(string Name, string Pages, string publicationYear, string Information, string ISBN, List<string> authors)
         {
             TempData["title"] = Name;
@@ -80,6 +82,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public RedirectToRouteResult Add(Book bookObj, List<int> authorIds)
         {
             if (authorIds != null)

@@ -4,24 +4,29 @@
 }
 
 <h2>Add book</h2>
+
 <div class="form-div">
 
     <form method="post" name="addBook" action="/Books/Add" onsubmit="return validateForm()">
+
+        @Html.AntiForgeryToken()
+
         <div><label class="editLabel">ISBN:</label><input type="text" name="ISBN" class="form-control" /></div>
-        <div><label class="editLabel">Title:</label><input type="text" name="Title" class="form-control"  /> <br /><label id="valName" class="valLabel" style="visibility:collapse;">* Title is required</label></div>
-        <div><label class="editLabel">Pages:</label><input type="text" name="pages" id="pagesBox" onkeypress="validate(event)" class="form-control"  /><br /><label id="valPages" class="valLabel" style="visibility:collapse;">* Number of pages is required</label></div>
-        <div><label class="editLabel">Publication Year:</label><input type="text" name="PublicationYear" onkeypress="validate(event)" class="form-control"  /><br /><label id="valYear" class="valLabel" style="visibility:collapse;">* Publiction year is required</label></div>
-        <div><label class="editLabel">Information:</label><input type="text" name="publicationinfo" class="form-control"  /> <br /><label id="valInfo" class="valLabel" style="visibility:collapse;">* Information is required</label></div>
+        <div><label class="editLabel">Title:</label><input type="text" name="Title" class="form-control" /> <br /><label id="valName" class="valLabel" style="visibility:collapse;">* Title is required</label></div>
+        <div><label class="editLabel">Pages:</label><input type="text" name="pages" id="pagesBox" onkeypress="validate(event)" class="form-control" /><br /><label id="valPages" class="valLabel" style="visibility:collapse;">* Number of pages is required</label></div>
+        <div><label class="editLabel">Publication Year:</label><input type="text" name="PublicationYear" onkeypress="validate(event)" class="form-control" /><br /><label id="valYear" class="valLabel" style="visibility:collapse;">* Publiction year is required</label></div>
+        <div><label class="editLabel">Information:</label><input type="text" name="publicationinfo" class="form-control" /> <br /><label id="valInfo" class="valLabel" style="visibility:collapse;">* Information is required</label></div>
         <label class="editLabel">
-            Authors:</label>
-            <select size="10" name="authorIds" multiple class="selectpicker" data-live-search="true" style=" margin-bottom: 5px;">
-                @foreach (var author in Model)
-        {
-            <option value="@author.Aid">@author.FirstName @author.LastName</option>
-}
-            </select>
-            <div style="height: 30px; margin-top:10px; text-align:center;"><input type="submit" value="Add" formmethod="post" class="btn saveBtn" /></div>
-</form>
+            Authors:
+        </label>
+        <select size="10" name="authorIds" multiple class="selectpicker" data-live-search="true" style=" margin-bottom 5px;">
+            @foreach (var author in Model)
+            {
+                <option value="@author.Aid">@author.FirstName @author.LastName</option>
+            }
+        </select>
+        <div style="height: 30px; margin-top:10px; text-align:center;"><input type="submit" value="Add" formmethod="post" class="btn saveBtn" /></div>
+    </form>
 
 </div>
 <script type="text/javascript">
