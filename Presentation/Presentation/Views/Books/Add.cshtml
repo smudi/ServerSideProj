@@ -11,7 +11,7 @@
 
         @Html.AntiForgeryToken()
 
-        <div><label class="editLabel">ISBN:</label><input type="text" name="ISBN" class="form-control" /></div>
+        <div><label class="editLabel">ISBN:</label><input type="text" name="ISBN" class="form-control" /><br /><label id="valISBN" class="valLabel" style="visibility:collapse;">* ISBN is required</label></div>
         <div><label class="editLabel">Title:</label><input type="text" name="Title" class="form-control" /> <br /><label id="valName" class="valLabel" style="visibility:collapse;">* Title is required</label></div>
         <div><label class="editLabel">Pages:</label><input type="text" name="pages" id="pagesBox" onkeypress="validate(event)" class="form-control" /><br /><label id="valPages" class="valLabel" style="visibility:collapse;">* Number of pages is required</label></div>
         <div><label class="editLabel">Publication Year:</label><input type="text" name="PublicationYear" onkeypress="validate(event)" class="form-control" /><br /><label id="valYear" class="valLabel" style="visibility:collapse;">* Publiction year is required</label></div>
@@ -31,12 +31,17 @@
 </div>
 <script type="text/javascript">
     function validateForm() {
+        var isbn = document.forms["addBook"]["ISBN"].value;
         var name = document.forms["addBook"]["Title"].value;
         var pages = document.forms["addBook"]["pages"].value;
         var pyear = document.forms["addBook"]["PublicationYear"].value;
         var pinfo = document.forms["addBook"]["publicationinfo"].value;
         var isOK = true;
-        debugger;
+        if (isbn == "") {
+            var valISBN = document.getElementById("valISBN");
+            valISBN.style.visibility = "visible";
+            isOK = false;
+        }
         if (name == "") {
             var nameVal = document.getElementById("valName");
             nameVal.style.visibility = "visible";

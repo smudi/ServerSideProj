@@ -60,15 +60,17 @@ namespace Presentation.Controllers
         public RedirectToRouteResult Update()
         {
             List<Book> Books = new List<Book>();
-            foreach (var bo in TempData["books"] as List<string>)
+            if(TempData["books"] != null)
             {
-                Books.Add(new Book
+                foreach (var bo in TempData["books"] as List<string>)
                 {
-                    ISBN = bo
-                });
-
+                    Books.Add(new Book
+                    {
+                        ISBN = bo
+                    });
+                }
             }
-
+          
             Author.Update(Convert.ToString(TempData["firstName"]), Convert.ToString(TempData["lastName"]),
                                         Convert.ToString(TempData["birthYear"]), Convert.ToInt32(TempData["aid"]),
                                          Books);

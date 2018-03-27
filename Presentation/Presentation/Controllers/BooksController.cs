@@ -58,15 +58,17 @@ namespace Presentation.Controllers
         public RedirectToRouteResult Update()
         {
             List<Author> Authors = new List<Author>();
-            foreach (var au in TempData["authors"] as List<string>)
+            if(TempData["authors"] != null)
             {
-                Authors.Add(new Author
+                foreach (var au in TempData["authors"] as List<string>)
                 {
-                    Aid = Convert.ToInt32(au)
-                });
-
+                    Authors.Add(new Author
+                    {
+                        Aid = Convert.ToInt32(au)
+                    });
+                }
             }
-
+       
             Book.Update(Convert.ToString(TempData["title"]), Convert.ToString(TempData["isbn"]),
                                         Convert.ToString(TempData["pubYear"]), Convert.ToString(TempData["info"]),
                                         Convert.ToInt16(TempData["pages"]), Authors);

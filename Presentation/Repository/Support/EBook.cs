@@ -40,54 +40,35 @@ namespace Repository.Support
         public void Update(BOOK bookObj)
         {
 
-            string query = "UPDATE BOOK SET Title='" + bookObj.Title + "', ISBN='" + bookObj.ISBN + "', Pages =" + Convert.ToString(bookObj.pages) + ", PublicationYear ='" + bookObj.PublicationYear +
-                "', publicationinfo = '" + bookObj.publicationinfo + "'" + "WHERE SignId =" + Convert.ToString(bookObj.SignId) + ";";
-
-            int noOfRows = 0;
-            string _connectionString = DataSource.getConnectionString("projectmanager");
-            SqlConnection con = new SqlConnection(_connectionString);
-            SqlCommand cmd = new SqlCommand(query, con);
-            try
+            using (var db = new LibDb())
             {
-                con.Open();
-                noOfRows = cmd.ExecuteNonQuery();
+
+                var b = db.BOOKs.Include(x => x.AUTHORs).ToList().Find(d => d.ISBN ==
+                bookObj.ISBN);
+                b.AUTHORs.Clear();
+
+                db.SaveChanges();
             }
-            catch (Exception exObj)
+
+            var newAuthors = bookObj.AUTHORs;
+            bookObj.AUTHORs = new List<AUTHOR>();
+
+            using (var db = new LibDb())
             {
-                throw exObj;
-            }
-            finally
-            {
-                using (var db = new LibDb())
+
+                db.BOOKs.Attach(bookObj);
+                db.Entry(bookObj).State = EntityState.Modified;
+
+                foreach (var author in newAuthors)
                 {
-
-                    var b = db.BOOKs.Include(x => x.AUTHORs).ToList().Find(d => d.ISBN ==
-                    bookObj.ISBN);
-                    b.AUTHORs.Clear();
-
-                    db.SaveChanges();
+                    db.AUTHORs.Attach(author);
+                    bookObj.AUTHORs.Add(author);
                 }
-
-                var newAuthors = bookObj.AUTHORs;
-                bookObj.AUTHORs = new List<AUTHOR>();
-
-                using (var db = new LibDb())
-                {
-
-                    db.BOOKs.Attach(bookObj);
-                    db.Entry(bookObj).State = EntityState.Modified;
-
-                    foreach (var author in newAuthors)
-                    {
-                        db.AUTHORs.Attach(author);
-                        bookObj.AUTHORs.Add(author);
-                    }
-                    db.SaveChanges();
-                }
-
+                db.SaveChanges();
             }
 
         }
+
         public void Add(BOOK bookObj)
         {
             using (var db = new LibDb())
