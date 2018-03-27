@@ -34,13 +34,13 @@ center {
 
 .navigationBar {
     display: flex;
-    background: #961b81;
+    background: #333;
 }
 
 .navigList {
     display: inline;
     width: 20%;
-    padding: 40px;
+    padding: 20px;
     font-variant-caps: all-small-caps;
 }
 
@@ -59,17 +59,19 @@ center {
         }
 
 .btn {
-    border-radius: 3px;
-    color: #fff;
+    border-radius: 2px;
+    color: #000;
     text-decoration-line: none;
     padding: 5px;
     box-shadow: 2px 2px 2px #333;
     width: 200px;
+    font-variant-caps: all-petite-caps;
 }
 
     .btn:hover {
         box-shadow: none;
         cursor: pointer;
+        color: #000;
     }
 
 .saveBtn {
@@ -85,7 +87,7 @@ center {
 }
 
 .createBtn {
-    background-color: rebeccapurple;
+    background-color: cadetblue;
 }
 
 .input {
@@ -100,26 +102,29 @@ center {
 }
 
 input {
-    border-radius: 3px;
-    box-shadow: 1px 1px 1px #333 inset;
-    height: 30px;
-    border: 1px solid #666;
-    width: 200px;
     margin-bottom: 5px;
 }
 
-    input:active {
+    /*input:active {
         box-shadow: 1px -1px 1px #333 inset;
     }
 
     input:focus {
         box-shadow: 1px -1px 1px #333 inset;
-    }
+    }*/
 
 h2 {
     text-align: center;
     border-bottom: 1px groove;
-    font-variant-caps: small-caps;
+    font-variant-caps: all-small-caps;
+    width: fit-content;
+    width: -moz-fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 36px;
+    margin-bottom: 20px;
 }
 
 .editLabel {
@@ -192,6 +197,7 @@ form {
 
 .form-div {
     width: -moz-fit-content;
+    width: fit-content;
     margin-left: auto;
     margin-right: auto;
     background: #555;
@@ -210,6 +216,7 @@ form {
 
 .info-div {
     width: -moz-fit-content;
+    width: fit-content;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
@@ -283,4 +290,17 @@ thead {
     font-variant-caps: all-small-caps;
     font-size: 18px;
     box-shadow: 0px 2px 2px #333;
+}
+.form-control{
+    display: initial !important;
+}
+div.image {
+    content: url(images/books.jpg);
+    margin-left: auto;
+    margin-right: auto;
+}
+.navigBar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
 }

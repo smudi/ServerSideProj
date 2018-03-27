@@ -3,5 +3,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>HOME</h2>
+<h2>
+    Welcome
+    @if (Session["user"] != null)
+    {
+        @Session["userName"].ToString()
+    }
+
+</h2>
+<div class="image"></div>
 
