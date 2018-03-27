@@ -21,8 +21,12 @@ namespace Presentation.Controllers
             return View(Author.getAuthor(id));
         }
 
+        //--------------------------------------------------------EDIT--------------------------------------------------------
         public ActionResult Edit(int id)
-        {        
+        {
+            if (Session["user"] == null)
+                return RedirectToAction("Index");
+
             EditAuthorModel obj = new EditAuthorModel();
             obj.Author = Author.getAuthor(id);
             obj.Books = Book.getBookList();
@@ -36,12 +40,17 @@ namespace Presentation.Controllers
             TempData["birthYear"] = BirthYear;
             TempData["aid"] = Convert.ToInt32(Aid);
 
-            List<string> booksList = new List<string>();
-            foreach (var bo in books)
+            if (books == null) TempData["books"] = null;
+            else
             {
-                booksList.Add(bo);
+                List<string> booksList = new List<string>();
+                foreach (var bo in books)
+                {
+                    booksList.Add(bo);
+                }
+                TempData["books"] = books;
             }
-            TempData["books"] = booksList;
+
             return RedirectToAction("Update");
         }
 
@@ -62,15 +71,21 @@ namespace Presentation.Controllers
                                          Books);
             return RedirectToAction("Index", "Authors");
         }
+        //--------------------------------------------------------ADD--------------------------------------------------------
         public ActionResult Add()
         {
+            if (Session["user"] == null)
+                return RedirectToAction("Index");
+
             return View(Book.getBookList());
         }
 
         [HttpPost]
-        public RedirectToRouteResult Add(Author authorObj, List<string>bookIds)
+        public RedirectToRouteResult Add(Author authorObj, List<string> bookIds)
         {
-            authorObj.Books = bookIds.Select(id => new Book { ISBN = id }).ToList();
+            if (bookIds != null)
+                authorObj.Books = bookIds.Select(id => new Book { ISBN = id }).ToList();
+
             TempData["author"] = authorObj;
 
             return RedirectToAction("Store", authorObj);
@@ -80,9 +95,13 @@ namespace Presentation.Controllers
             Author.Add(TempData["author"] as Author);
             return RedirectToAction("Index", "Authors");
         }
-        //---------------DELETE---------------
+        [HttpPost]
+        //--------------------------------------------------------DELETE--------------------------------------------------------
         public RedirectToRouteResult Delete(int id)
         {
+            if (Session["user"] == null)
+                return RedirectToAction("Index");
+
             var x = Author.getAuthor(id);
             Author.Delete(x);
             return RedirectToAction("Index", "Authors");

@@ -9,6 +9,15 @@
 <ul>
     @foreach (var admin in Model)
     {
-        <li class="list-item">@admin.UserName</li>
+        <li style="display:inline-flex; width: 300px; font-variant-caps:all-small-caps; font-size: 20px; border-top: 1px groove; padding-bottom: 20px;">@admin.UserName</li>
+        if (Session["user"] !=null)
+        {
+            if ((int)Session["userRank"] == 1)
+            {
+                <form method="post" action="/Administrators/Delete?id=@admin.UserId">
+                    <input type="submit" value="Delete admin" class="btn cancelBtn" style="float:right;" />
+                </form>
+            }
+        }
     }
 </ul>

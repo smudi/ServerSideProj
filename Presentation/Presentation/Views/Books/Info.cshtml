@@ -4,27 +4,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Info</h2>
-    <div class="info-div">
-        <h1 class="info-title">@Model.Title</h1>
-        <p>@Model.publicationinfo</p>
-    </div>
-<p>@Model.PublicationYear</p>
-<br/>
-<p>@Model.pages</p>
-<div class="list-group">
-        <ul>
+<div class="info-div">
+    <h1 class="info-title">@Model.Title</h1>
+    <p class="boldP">Information: </p><p>@Model.publicationinfo</p>
+    <p class="boldP">Publication year: </p><p>@Model.PublicationYear</p>
+    <br />
+    <p class="boldP">Pages: </p><p>@Model.pages</p>
+
+
+    <div class="list-group">
+        <table class="infoTable">
             @foreach (var author in Model.Authors)
             {
-                <li class="list-item">@Html.ActionLink(author.FirstName == null ? "Unknown" : author.FirstName + " " + author.LastName, "Info", "Authors", new { id = author.Aid }, null)</li>
+                <tr class="list-item" onclick="location.href='@Url.Action("Info", "Authors", new { id = author.Aid }, null)'">
+                    <td>@((author.FirstName == null ? "Unknown" : author.FirstName) + " " + (author.LastName == null ? "Unknown" : author.LastName))</td>
+                </tr>
             }
-        </ul>
+        </table>
     </div>
-<div>
+    <div style="display: block; width: 100%; text-align:center;">
+        @if (Session["user"] != null)
+        {
+            <div style="display: table-row;">
+                @Html.ActionLink("Edit Book", "Edit", "Books", new { id = Model.ISBN }, new { @class = "btn createBtn" })
+            </div>
+            <div style="display: table-row;">
+                <form method="post" action="/Books/Delete?id=@Model.ISBN">
+                    <div style="height: 30px;"><input type="submit" value="Delete book" class="btn cancelBtn" style="float:right;" /></div>
+                </form>
+            </div>
+        }
+
+    </div>
 </div>
-@if (Session["user"] != null)
-{
-    @Html.ActionLink("Edit Book", "Edit", "Books", new { id = Model.ISBN, @class = "btn createBtn" }, null)
-    @Html.ActionLink("Delete Book", "Delete", "Books", new { id = Model.ISBN, @class = "btn createBtn" }, null)
-}
+
+
 

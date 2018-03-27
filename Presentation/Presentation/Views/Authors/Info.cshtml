@@ -6,23 +6,32 @@
 @*<h2>Info</h2>*@
 <div class="info-div">
     <h1 class="info-title">@Model.FirstName @Model.LastName</h1>
-    <p>Birth year: @Model.BirthYear</p>
-    
+    <p class="boldP">Birth year: </p><p>@Model.BirthYear</p>
+    <p class="boldP">Books:</p>
     <div class="list-group">
-        <p>Books:</p>
-        <table>
+
+        <table class="infoTable">
             @foreach (var book in Model.Books)
             {
-                <tr class="list-item">@Html.ActionLink(book.Title == null ? "Unknown" : book.Title, "Info", "Books", new { id = book.ISBN }, null)</tr>
+                <tr class="list-item" onclick="location.href='@Url.Action("Info", "Books", new { id = book.ISBN }, null)'">
+                    <td>@(book.Title == null ? "Unknown" : book.Title)</td>
+                </tr>
             }
         </table>
     </div>
+    <div style="display: block; width: 100%; text-align:center;">
+        @if (Session["user"] != null)
+        {
+            <div style="display: table-row;">
+                @Html.ActionLink("Edit Author", "Edit", "Authors", new { id = Model.Aid }, new { @class = "btn createBtn" })
+            </div>
+            <div style="display: table-row;">
+                <form method="post" action="/Authors/Delete?id=@Model.Aid">
+                    <input type="submit" value="Delete author" class="btn cancelBtn" style="float:right;" />
+                </form>
+            </div>
+        }
+    </div>
+</div>
 
-</div>
-<div>
-</div>
-@if (Session["user"] != null)
-{
-@Html.ActionLink("Edit Author", "Edit", "Authors", new { id = Model.Aid, @class = "btn createBtn" }, null)
-@Html.ActionLink("Delete Author", "Delete", "Authors", new { id = Model.Aid, @class = "btn createBtn" }, null)
-}
+

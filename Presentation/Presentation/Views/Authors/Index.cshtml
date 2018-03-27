@@ -8,7 +8,7 @@
 
 
 <div class="search-div">
-    <input type="text" id="searchBox" onkeyup="searchFunction()" placeholder="Filter authors" />
+    <input type="text" id="searchBox" style="display:initial;" class="form-control" onkeyup="searchFunction()" placeholder="Filter authors" />
     @if (Session["user"] != null)
     {
         <div style="float:right; display:flex;">
@@ -19,20 +19,23 @@
 
 
 <div class="list-group">
-    <table style="width: 100%; height: 80%;" id="authorTable">
-        <tr class="list-header">
-            <td class="">AUTHOR</td>
-
-        </tr>
-        @foreach (var author in Model)
-        {
-            <tr onclick="location.href='@Url.Action("Info", "Authors", new { id = author.Aid }, null)'" class="list-item">
-                <td class="">
-                    @author.FirstName @author.LastName
-                </td>
-
+    <table style="width: 100%;" class="fixed_headers" id="authorTable">
+        <thead>
+            <tr class="list-header">
+                <th class="list-column list-column-first">Author</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var author in Model)
+            {
+                <tr onclick="location.href='@Url.Action("Info", "Authors", new { id = author.Aid }, null)'" class="list-item">
+                    <td class="">
+                        @author.FirstName @author.LastName
+                    </td>
+
+                </tr>
+            }
+        </tbody>
 
     </table>
 

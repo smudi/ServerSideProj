@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Repository.Support
 {
@@ -57,39 +58,36 @@ namespace Repository.Support
             }
             finally
             {
-                if (con != null)
-                    con.Close();
+                using (var db = new LibDb())
+                {
+
+                    var b = db.BOOKs.Include(x => x.AUTHORs).ToList().Find(d => d.ISBN ==
+                    bookObj.ISBN);
+                    b.AUTHORs.Clear();
+
+                    db.SaveChanges();
+                }
+
+                var newAuthors = bookObj.AUTHORs;
+                bookObj.AUTHORs = new List<AUTHOR>();
+
+                using (var db = new LibDb())
+                {
+
+                    db.BOOKs.Attach(bookObj);
+                    db.Entry(bookObj).State = EntityState.Modified;
+
+                    foreach (var author in newAuthors)
+                    {
+                        db.AUTHORs.Attach(author);
+                        bookObj.AUTHORs.Add(author);
+                    }
+                    db.SaveChanges();
+                }
+
             }
 
-            //using (var db = new LibDb())
-            //{
-
-            //    var b = db.BOOKs.Include(x => x.AUTHORs).ToList().Find(d => d.ISBN ==
-            //    bookObj.ISBN);
-            //    b.AUTHORs.Clear();
-
-            //    db.SaveChanges();
-            //}
-
-            //var newAuthors = bookObj.AUTHORs;
-            //bookObj.AUTHORs = new List<AUTHOR>();
-
-            //using (var db = new LibDb())
-            //{
-
-            //    db.BOOKs.Attach(bookObj);
-            //    db.Entry(bookObj).State = EntityState.Modified;
-
-            //    foreach (var author in newAuthors)
-            //    {
-            //        db.AUTHORs.Attach(author);
-            //        bookObj.AUTHORs.Add(author);
-            //    }
-
-            //    db.SaveChanges();
         }
-
-
         public void Add(BOOK bookObj)
         {
             using (var db = new LibDb())

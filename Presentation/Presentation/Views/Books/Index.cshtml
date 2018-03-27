@@ -11,40 +11,41 @@
 }
 
 
-    <div class="search-div">
-        <input type="text" id="searchBox" onkeyup="searchFunction()" placeholder="Filter books" />
-        @if (Session["user"] != null)
-        {
+<div class="search-div">
+    <input type="text" id="searchBox" style="display: initial;" class="form-control" onkeyup="searchFunction()" placeholder="Filter books" />
+    @if (Session["user"] != null)
+    {
         <div style="float:right; display:flex;">
             @Html.ActionLink("Create Book", "Add", "Books", new { @class = "btn createBtn" })
         </div>
-        }
-    </div>
+    }
+</div>
 
 
 
 <div class="list-group">
-    <table style="width:100%;" id="bookTable">
+    <table style="width:100%;" class="fixed_headers" id="bookTable">
         <thead>
-        <tr class="list-header">
-            <th class="list-column list-column-first">TITLE</th>
-            <th class="list-column list-column-second">AUTHORS</th>
-
-        </tr>
-        </thead>
-        @foreach (var book in Model)
-        {
-            <tr onclick="location.href='@Url.Action("Info", "Books", new { id = book.ISBN }, null)'" class="list-item">
-                <td class="list-column list-column-first">
-                    @book.Title
-                </td>
-                <td class="list-column list-column-second">
-                    @book.Authors
-                </td>
+            <tr class="list-header">
+                <th class="list-column list-column-first">TITLE</th>
+                <th class="list-column list-column-second">ISBN</th>
 
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr onclick="location.href='@Url.Action("Info", "Books", new { id = book.ISBN }, null)'" class="list-item">
+                    <td class="list-column list-column-first">
+                        @book.Title
+                    </td>
+                    <td class="list-column list-column-second">
+                        @book.ISBN
+                    </td>
 
+                </tr>
+            }
+        </tbody>
     </table>
 
 </div>

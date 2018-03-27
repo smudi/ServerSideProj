@@ -30,14 +30,17 @@
                 <li class="navigList">@Html.ActionLink("Books", "Index", "Books")</li>
                 <li class="navigList">@Html.ActionLink("Authors", "Index", "Authors")</li>
                 <li class="navigList">@Html.ActionLink("Administrators", "Index", "Administrators")</li>
-                <li class="navigList">@Html.ActionLink("Sign up","Register","Users")</li>
-                <li class="navigList">@Html.ActionLink("Log in", "Login", "Users")</li>
+     
                 @if (Session["user"] != null)
                 {
+                    if((int) Session["userRank"] == 1)
+                     {
+                         <li class="navigList">@Html.ActionLink("Add user", "Register", "Users")</li>
+                     }
                 <li class="navigList">@Session["userName"].ToString()</li>
                 <li class="navigList">@Html.ActionLink("Log out", "Logout", "Users")</li>
                 }
-               
+                else { <li class="navigList">@Html.ActionLink("Log in", "Login", "Users")</li> }                         
             </ul>
         </div>
     </nav>
