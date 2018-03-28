@@ -29,7 +29,7 @@
             @foreach (var author in Model)
             {
                 <tr onclick="location.href='@Url.Action("Info", "Authors", new { id = author.Aid }, null)'" class="list-item">
-                    <td class="">
+                    <td class="list-column-first">
                         @author.FirstName @author.LastName
                     </td>
 
