@@ -8,13 +8,13 @@
 
 <div class="form-div">
 
-    <form method="post" name="editAuthor" action="/Authors/Edit?Aid=@Model.Author.Aid" onsubmit="return validateForm()">
+    <form method="post" name="editAuthor" action="/Authors/Edit?Aid=@Model.Author.Aid" onsubmit="return validateEdForm()">
 
         @Html.AntiForgeryToken()
 
         <div><label class="editLabel">First name:</label><input name="FirstName" type="text" class="form-control" value="@Model.Author.FirstName" /><br /><label id="valFirstName" class="valLabel" style="visibility:collapse;">* First name is required</label></div>
         <div><label class="editLabel">Last name:</label><input name="LastName" type="text" class="form-control" value="@Model.Author.LastName" /><br /><label id="valLastName" class="valLabel" style="visibility:collapse;">* Last name is required</label></div>
-        <div><label class="editLabel">Birth year:</label><input name="BirthYear" type="text" class="form-control" value="@Model.Author.BirthYear" onkeypress="validate(evt)" /><br /><label id="valBirthYear" class="valLabel" style="visibility:collapse;">* Birth year is required</label></div>
+        <div><label class="editLabel">Birth year:</label><input name="BirthYear" type="text" class="form-control" value="@Model.Author.BirthYear"/><br/></div>
         <div>
             <select name="books" multiple class="selectpicker" data-live-search="true">
                 @foreach (var book in Model.Books)
@@ -28,10 +28,9 @@
 
 </div>
 <script type="text/javascript">
-    function validateForm() {
+    function validateEdForm() {
         var firstname = document.forms["editAuthor"]["FirstName"].value;
         var lastname = document.forms["editAuthor"]["LastName"].value;
-        var bYear = document.forms["editAuthor"]["BirthYear"].value;
         var isOK = true;
         debugger;
         if (firstname == "") {
@@ -42,11 +41,6 @@
         if (lastname == "") {
             var valLastName = document.getElementById("valLastName");
             valLastName.style.visibility = "visible";
-            isOK = false;
-        }
-        if (bYear == "") {
-            var valBirthYear = document.getElementById("valBirthYear");
-            valBirthYear.style.visibility = "visible";
             isOK = false;
         }
         if (isOK) {

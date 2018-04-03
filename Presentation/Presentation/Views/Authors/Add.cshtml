@@ -9,15 +9,13 @@
 
 <div class="form-div">
 
-    <form method="post" name="addAuthor" action="/Authors/Add" onsubmit="return validateForm()">
+    <form method="post" name="addAuthor" action="/Authors/Add" onsubmit="return validateAuthForm()">
 
         @Html.AntiForgeryToken()
 
-        <div><label class="editLabel">Aid:</label> @Html.TextBox("Aid", "", new { @class = "form-control" })<br /><label id="valID" class="valLabel" style="visibility:collapse;">* AID is required</label></div>
         <div><label class="editLabel">First name:</label> @Html.TextBox("FirstName", "", new { @class = "form-control" })<br /><label id="valFirstName" class="valLabel" style="visibility:collapse;">* First name is required</label></div>
         <div><label class="editLabel">Last name:</label> @Html.TextBox("LastName", "", new { @class = "form-control" }) <br /><label id="valLastName" class="valLabel" style="visibility:collapse;">* Last name is required</label></div>
-        <div><label class="editLabel">Birth year:</label> @Html.TextBox("BirthYear", "", new { @class = "form-control" })<br /><label id="valBirthYear" class="valLabel" style="visibility:collapse;">* Birth year is required</label></div>
-
+        <div><label class="editLabel">Birth year:</label> @Html.TextBox("BirthYear", "", new { @class = "form-control" })<br /></div>
 
         <select size="10" name="bookIds" multiple class="selectpicker" data-live-search="true">
             @foreach (var book in Model)
@@ -27,21 +25,14 @@
         </select>
         <div style="height: 30px; margin-top:10px; text-align:center;"><input type="submit" value="Add" formmethod="post" class="btn saveBtn" /></div>
     </form>
-
 </div>
 <script type="text/javascript">
-    function validateForm() {
-        var id = document.forms["addAuthor"]["Aid"].value;
+    function validateAuthForm() {
+        debugger;
         var firstname = document.forms["addAuthor"]["FirstName"].value;
         var lastname = document.forms["addAuthor"]["LastName"].value;
-        var bYear = document.forms["addAuthor"]["BirthYear"].value;
         var isOK = true;
         debugger;
-        if (id == "") {
-            var valID = document.getElementById("valID");
-            valID.style.visibility = "visible";
-            isOK = false;
-        }
         if (firstname == "") {
             var valFirstName = document.getElementById("valFirstName");
             valFirstName.style.visibility = "visible";
@@ -50,11 +41,6 @@
         if (lastname == "") {
             var valLastName = document.getElementById("valLastName");
             valLastName.style.visibility = "visible";
-            isOK = false;
-        }
-        if (bYear == "") {
-            var valBirthYear = document.getElementById("valBirthYear");
-            valBirthYear.style.visibility = "visible";
             isOK = false;
         }
         if (isOK) {

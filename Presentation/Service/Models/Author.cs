@@ -22,9 +22,12 @@ namespace Service.Models
 
         static private EAuthor _eAuthorObj = new EAuthor();
 
+
         static public Author getAuthor(int id)
         {
             AUTHOR authorObj = _eAuthorObj.Find(id); // go to EAuthor in repository, get the author from the database
+            if (authorObj == null) return null;
+
             Author author = Mapper.Map<Author>(authorObj); // save author as Author object in Service
             author.FirstName = author.FirstName;
             author.LastName = author.LastName;

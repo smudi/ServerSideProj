@@ -26,9 +26,14 @@ namespace Service.Models
 
         static private EBook _eBookObj = new EBook();
 
+        static public bool isbnDuplicate = false;
+
         static public Book getBook(string id)
         {
             BOOK bookObj = _eBookObj.Find(id); // go to EBook in repository, get the book from the database
+            if(bookObj == null)
+                return null;
+            
             Book book = Mapper.Map<Book>(bookObj); // save book as Book object in Service
             book.Title = book.Title;
             book.Authors = Mapper.Map<List<AUTHOR>, List<Author>>(bookObj.AUTHORs.ToList()); 

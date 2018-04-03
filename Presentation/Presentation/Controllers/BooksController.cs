@@ -80,6 +80,8 @@ namespace Presentation.Controllers
             if (Session["user"] == null)
                 return RedirectToAction("Index");
 
+            if (Book.isbnDuplicate) ViewBag.DuplicateMessage = "A book with this ISBN already exists";
+            Book.isbnDuplicate = false;
             return View(Author.getAuthorList());
         }
 
@@ -89,6 +91,13 @@ namespace Presentation.Controllers
         {
             if (authorIds != null)
                 bookObj.Authors = authorIds.Select(id => new Author { Aid = id }).ToList();
+
+            if (Book.getBook(bookObj.ISBN) != null)// If you try to add a book with an already existing ISBN.
+            {
+                Book.isbnDuplicate = true;
+                return RedirectToAction("Add");
+            }
+            else Book.isbnDuplicate = false;
 
             TempData["book"] = bookObj;
 
